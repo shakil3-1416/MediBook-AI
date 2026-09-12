@@ -1,0 +1,763 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: #a7f3d0;
+  color: #064e3b;
+}
+
+
+/* ====================================================
+   MEDIBOOK PRODUCT POLISH
+   ==================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+
+/* =====================================================
+   MEDIBOOK CONVERSATIONAL UI V2
+   ===================================================== */
+
+@keyframes medibook-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes medibook-pulse-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.75);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.medibook-message-enter {
+  animation:
+    medibook-message-in
+    180ms
+    ease-out;
+}
+
+
+.medibook-sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgb(226 232 240)
+    transparent;
+}
+
+
+.medibook-sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+.medibook-sidebar-scroll::-webkit-scrollbar-thumb {
+  background:
+    rgb(226 232 240);
+
+  border-radius:
+    999px;
+}
+
+
+.medibook-chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgb(226 232 240)
+    transparent;
+}
+
+
+.medibook-composer-shadow {
+  box-shadow:
+    0 8px 32px rgba(88, 28, 135, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+
+.medibook-typing-dot {
+  animation:
+    medibook-pulse-dot
+    1.3s
+    infinite
+    ease-in-out;
+}
+
+
+.medibook-typing-dot:nth-child(2) {
+  animation-delay:
+    0.14s;
+}
+
+
+.medibook-typing-dot:nth-child(3) {
+  animation-delay:
+    0.28s;
+}
+
+
+/* MediBook patient conversation motion */
+
+@keyframes medibook-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes medibook-soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+@keyframes medibook-thinking {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+
+.medibook-fade-up {
+  animation:
+    medibook-fade-up
+    220ms
+    ease-out;
+}
+
+
+.medibook-soft-float {
+  animation:
+    medibook-soft-float
+    4s
+    ease-in-out
+    infinite;
+}
+
+
+.medibook-message {
+  animation:
+    medibook-fade-up
+    180ms
+    ease-out;
+}
+
+
+.medibook-composer {
+  box-shadow:
+    0 10px 40px rgba(91, 33, 182, 0.08),
+    0 2px 10px rgba(15, 23, 42, 0.05);
+}
+
+/* MEDIBOOK_FINISH_SYSTEM_V1_START */
+
+/* ====================================================
+   MEDIBOOK PRODUCT SYSTEM
+   Patient-first conversational healthcare SaaS
+   ==================================================== */
+
+:root {
+  --background: #f8f7fc;
+  --foreground: #15111f;
+
+  --mb-bg: #f8f7fc;
+  --mb-bg-soft: #faf9fe;
+
+  --mb-surface: #ffffff;
+  --mb-surface-soft: #fbfaff;
+  --mb-surface-muted: #f5f3fb;
+
+  --mb-text: #171321;
+  --mb-text-secondary: #625d6f;
+  --mb-text-muted: #8c8798;
+
+  --mb-border: #e9e5f0;
+  --mb-border-strong: #dcd5e8;
+
+  --mb-purple-50: #f7f3ff;
+  --mb-purple-100: #eee7ff;
+  --mb-purple-200: #dfd1ff;
+  --mb-purple-300: #c9aeff;
+  --mb-purple-400: #ad7dff;
+  --mb-purple-500: #8d4cf6;
+  --mb-purple-600: #7430df;
+  --mb-purple-700: #6025bc;
+  --mb-purple-800: #502298;
+  --mb-purple-900: #431f7a;
+
+  --mb-primary: #7430df;
+  --mb-primary-hover: #6025bc;
+  --mb-primary-soft: #f3edff;
+
+  --mb-success: #15803d;
+  --mb-success-soft: #f0fdf4;
+
+  --mb-warning: #b45309;
+  --mb-warning-soft: #fffbeb;
+
+  --mb-danger: #b91c1c;
+  --mb-danger-soft: #fef2f2;
+
+  --mb-info: #1d4ed8;
+  --mb-info-soft: #eff6ff;
+
+  --mb-shadow-xs:
+    0 1px 2px rgb(24 17 35 / 0.04);
+
+  --mb-shadow-sm:
+    0 1px 3px rgb(24 17 35 / 0.06),
+    0 1px 2px rgb(24 17 35 / 0.03);
+
+  --mb-shadow-md:
+    0 12px 32px rgb(39 25 68 / 0.08),
+    0 2px 8px rgb(39 25 68 / 0.04);
+
+  --mb-shadow-lg:
+    0 24px 60px rgb(39 25 68 / 0.12),
+    0 4px 16px rgb(39 25 68 / 0.05);
+
+  --mb-radius-sm: 10px;
+  --mb-radius-md: 14px;
+  --mb-radius-lg: 18px;
+  --mb-radius-xl: 24px;
+
+  --mb-ring:
+    0 0 0 3px rgb(116 48 223 / 0.17);
+
+  --mb-content: 1180px;
+}
+
+
+/* ----------------------------------------------------
+   DOCUMENT
+   ---------------------------------------------------- */
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  background: var(--mb-bg);
+  color-scheme: light;
+  text-rendering: optimizeLegibility;
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  background:
+    radial-gradient(
+      circle at 15% -10%,
+      rgb(238 231 255 / 0.7),
+      transparent 30rem
+    ),
+    linear-gradient(
+      180deg,
+      #fbfaff 0%,
+      var(--mb-bg) 42%,
+      #f8fafc 100%
+    );
+
+  color: var(--mb-text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  font-feature-settings:
+    "cv02",
+    "cv03",
+    "cv04",
+    "cv11";
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+::selection {
+  background: var(--mb-purple-200);
+  color: var(--mb-purple-900);
+}
+
+
+/* ----------------------------------------------------
+   TYPOGRAPHY
+   ---------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--mb-text);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+
+p {
+  text-wrap: pretty;
+}
+
+
+/* ----------------------------------------------------
+   INTERACTION
+   ---------------------------------------------------- */
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+button,
+a {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--mb-purple-500);
+  outline-offset: 2px;
+}
+
+
+/* ----------------------------------------------------
+   INPUTS
+   ---------------------------------------------------- */
+
+input,
+textarea,
+select {
+  color: var(--mb-text);
+  caret-color: var(--mb-primary);
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: #9a94a4;
+  opacity: 1;
+}
+
+
+/* ----------------------------------------------------
+   TABLES
+   Hospital operations should feel dense but calm.
+   ---------------------------------------------------- */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+
+thead th {
+  color: var(--mb-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+
+tbody td {
+  color: var(--mb-text);
+}
+
+
+tbody tr {
+  transition:
+    background-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+
+/* ----------------------------------------------------
+   SCROLLING
+   ---------------------------------------------------- */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color:
+    #cfc5dd
+    transparent;
+}
+
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+*::-webkit-scrollbar-thumb {
+  min-height: 36px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      #cfc5dd,
+      #cfc5dd
+    )
+    padding-box;
+}
+
+
+*::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      #b6a8cc,
+      #b6a8cc
+    )
+    padding-box;
+}
+
+
+/* ----------------------------------------------------
+   PRODUCT UTILITY SURFACES
+   ---------------------------------------------------- */
+
+.mb-surface {
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-lg);
+  background: var(--mb-surface);
+  box-shadow: var(--mb-shadow-sm);
+}
+
+
+.mb-panel {
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-xl);
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fdfcff 100%
+    );
+  box-shadow: var(--mb-shadow-md);
+}
+
+
+.mb-muted-panel {
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-lg);
+  background: var(--mb-surface-soft);
+}
+
+
+.mb-eyebrow {
+  color: var(--mb-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+.mb-secondary-text {
+  color: var(--mb-text-secondary);
+}
+
+
+.mb-muted-text {
+  color: var(--mb-text-muted);
+}
+
+
+.mb-divider {
+  border-color: var(--mb-border);
+}
+
+
+.mb-primary-button {
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--mb-purple-600),
+      #8b46e8
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 22px rgb(116 48 223 / 0.18);
+
+  font-weight: 650;
+}
+
+
+.mb-primary-button:hover {
+  background:
+    linear-gradient(
+      135deg,
+      var(--mb-purple-700),
+      var(--mb-purple-600)
+    );
+
+  box-shadow:
+    0 10px 26px rgb(116 48 223 / 0.24);
+}
+
+
+.mb-primary-button:active {
+  transform: translateY(1px);
+}
+
+
+/* ----------------------------------------------------
+   CHAT / WIDGET BEHAVIOR
+   Generic enough to preserve existing component logic.
+   ---------------------------------------------------- */
+
+[data-medibook-chat] {
+  color: var(--mb-text);
+}
+
+
+[data-medibook-chat] textarea,
+[data-medibook-chat] input {
+  border-color: var(--mb-border-strong);
+  background: #ffffff;
+}
+
+
+[data-medibook-chat] textarea:focus,
+[data-medibook-chat] input:focus {
+  border-color: var(--mb-purple-400);
+  box-shadow: var(--mb-ring);
+}
+
+
+/* ----------------------------------------------------
+   APPOINTMENT CALENDAR
+   ---------------------------------------------------- */
+
+[data-medibook-calendar] {
+  color: var(--mb-text);
+}
+
+
+[data-medibook-calendar] button[aria-current="date"] {
+  border-color: var(--mb-purple-300);
+  background: var(--mb-primary-soft);
+  color: var(--mb-purple-800);
+}
+
+
+/* ----------------------------------------------------
+   HOSPITAL OPERATIONS
+   ---------------------------------------------------- */
+
+[data-medibook-hospital] {
+  color: var(--mb-text);
+}
+
+
+[data-medibook-hospital] table {
+  overflow: hidden;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  background: #ffffff;
+}
+
+
+[data-medibook-hospital] tbody tr:hover {
+  background: #faf8ff;
+}
+
+
+/* ----------------------------------------------------
+   MOBILE
+   ---------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+  body {
+    min-height: 100dvh;
+    background:
+      linear-gradient(
+        180deg,
+        #fbfaff 0%,
+        #f8f7fc 100%
+      );
+  }
+
+
+  button,
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+
+  .mb-panel {
+    border-radius: 18px;
+  }
+}
+
+
+/* ----------------------------------------------------
+   ACCESSIBILITY
+   ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+
+/* MEDIBOOK_FINISH_SYSTEM_V1_END */
