@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime, timezone
+from decimal import Decimal
 
 from sqlalchemy import (
     Boolean,
+    CheckConstraint,
     DateTime,
     ForeignKey,
+    Numeric,
     String,
     UniqueConstraint,
+    text,
 )
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
@@ -139,6 +143,15 @@ class HospitalDoctor(Base):
             "doctor_id",
             name="uq_hospital_doctor",
         ),
+        UniqueConstraint(
+            "hospital_id",
+            "external_doctor_id",
+            name="uq_hospital_doctor_external_id",
+        ),
+        CheckConstraint(
+            "source_mode IN ('managed', 'connected', 'hybrid')",
+            name="ck_hospital_doctors_source_mode",
+        ),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(
@@ -167,11 +180,17 @@ class HospitalDoctor(Base):
         index=True,
     )
 
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        nullable=False,
-        default=utcnow,
-    )
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True, server_default="true", index=True)
+    source_mode: Mapped[str] = mapped_column(String(32), nullable=False, default="managed", server_default="managed", index=True)
+    external_doctor_id: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    clinic_name: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    clinic_location: Mapped[str | None] = mapped_column(String(250), nullable=True)
+    consultation_fee: Mapped[Decimal | None] = mapped_column(Numeric(10, 2), nullable=True)
+    public_profile: Mapped[dict] = mapped_column(JSONB, nullable=False, default=dict, server_default=text("'{}'::jsonb"))
+    operational_metadata: Mapped[dict] = mapped_column(JSONB, nullable=False, default=dict, server_default=text("'{}'::jsonb"))
+
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, default=utcnow, onupdate=utcnow, server_default=text("now()"))
 
 
 class HospitalIntegration(Base):
