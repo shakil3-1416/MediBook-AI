@@ -72,3 +72,6 @@ api_router.include_router(workspaces.router)
 
 # Hospital-scoped public widget API
 api_router.include_router(hospital_public.router)
+
+from app.api.v1 import hospital_doctor_registry
+api_router.include_router(hospital_doctor_registry.router)

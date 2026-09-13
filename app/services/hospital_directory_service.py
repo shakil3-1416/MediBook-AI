@@ -12,8 +12,8 @@ from app.models import (
     DoctorSlot,
 )
 from app.models.hospital import HospitalDoctor
-from app.services.hospital_context import (
-    require_hospital_doctor,
+from app.services.hospital_doctor_access import (
+    require_active_hospital_doctor,
 )
 
 
@@ -50,6 +50,7 @@ class HospitalDirectoryService:
             .where(
                 HospitalDoctor.hospital_id
                 == hospital_id,
+                HospitalDoctor.is_active.is_(True),
                 Doctor.is_active.is_(True),
             )
         )
@@ -98,7 +99,7 @@ class HospitalDirectoryService:
         doctor_id: uuid.UUID,
     ) -> Doctor | None:
 
-        await require_hospital_doctor(
+        await require_active_hospital_doctor(
             self.session,
             hospital_id=hospital_id,
             doctor_id=doctor_id,
@@ -126,7 +127,7 @@ class HospitalDirectoryService:
         end_date: date,
     ) -> list[DoctorSlot]:
 
-        await require_hospital_doctor(
+        await require_active_hospital_doctor(
             self.session,
             hospital_id=hospital_id,
             doctor_id=doctor_id,
