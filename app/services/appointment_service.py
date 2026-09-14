@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import UUID, uuid4
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -114,6 +114,44 @@ class AppointmentService:
             )
         )
 
+    async def active_slot_count(
+        self,
+        *,
+        slot_id: UUID,
+        exclude_appointment_id: UUID | None = None,
+    ) -> int:
+        statement = select(
+            func.count(Appointment.id)
+        ).where(
+            Appointment.doctor_slot_id == slot_id,
+            Appointment.status.in_(ACTIVE_STATUSES),
+        )
+
+        if exclude_appointment_id is not None:
+            statement = statement.where(
+                Appointment.id != exclude_appointment_id
+            )
+
+        value = await self.session.scalar(statement)
+
+        return int(value or 0)
+
+    async def refresh_slot_availability(
+        self,
+        *,
+        slot: DoctorSlot,
+    ) -> int:
+        active = await self.active_slot_count(
+            slot_id=slot.id,
+        )
+
+        slot.is_available = bool(
+            slot.is_enabled
+            and active < slot.capacity
+        )
+
+        return active
+
     # ========================================================
     # Booking preview
     # ========================================================
@@ -129,8 +167,8 @@ class AppointmentService:
             select(DoctorSlot)
             .join(
                 HospitalDoctor,
-                HospitalDoctor.doctor_id
-                == DoctorSlot.doctor_id,
+                HospitalDoctor.id
+                == DoctorSlot.hospital_doctor_id,
             )
             .options(
                 selectinload(
@@ -141,8 +179,10 @@ class AppointmentService:
             )
             .where(
                 DoctorSlot.id == slot_id,
+                DoctorSlot.is_enabled.is_(True),
                 HospitalDoctor.hospital_id
                 == hospital_id,
+                HospitalDoctor.is_active.is_(True),
             )
         )
 
@@ -215,24 +255,23 @@ class AppointmentService:
                     "Appointment slot does not exist."
                 )
 
-            if not slot.is_available:
+            if not slot.is_enabled:
                 raise SlotUnavailableError(
-                    "This appointment time has already been booked."
+                    "This appointment slot is disabled."
                 )
 
-            existing = await self.session.scalar(
-                select(Appointment.id).where(
-                    Appointment.doctor_slot_id
-                    == slot.id,
-                    Appointment.status.in_(
-                        ACTIVE_STATUSES
-                    ),
-                )
+            active_count = await self.active_slot_count(
+                slot_id=slot.id,
             )
 
-            if existing is not None:
+            if active_count >= slot.capacity:
+                slot.is_available = bool(
+                slot.is_enabled
+                and active_count + 1 < slot.capacity
+            )
+
                 raise SlotUnavailableError(
-                    "This appointment time has already been booked."
+                    "This appointment time has reached capacity."
                 )
 
             patient = await self.get_or_create_patient(
@@ -269,6 +308,10 @@ class AppointmentService:
             slot.is_available = False
 
             await self.session.flush()
+
+            await self.refresh_slot_availability(
+                slot=slot,
+            )
 
             await self.add_event(
                 appointment_id=appointment.id,
@@ -490,8 +533,12 @@ class AppointmentService:
                 )
             )
 
+            await self.session.flush()
+
             if slot is not None:
-                slot.is_available = True
+                await self.refresh_slot_availability(
+                    slot=slot,
+                )
 
             await self.add_event(
                 appointment_id=appointment.id,
@@ -610,6 +657,7 @@ class AppointmentService:
                 .where(
                     DoctorSlot.id
                     == new_slot_id,
+                    DoctorSlot.is_enabled.is_(True),
                     HospitalDoctor.hospital_id
                     == hospital_id,
                 )
@@ -621,27 +669,31 @@ class AppointmentService:
                     "New appointment slot not found."
                 )
 
-            if not new_slot.is_available:
+            if not new_slot.is_enabled:
                 raise SlotUnavailableError(
-                    "The requested new slot is unavailable."
+                    "The requested new slot is disabled."
                 )
 
-            occupied = await self.session.scalar(
-                select(Appointment.id)
-                .where(
-                    Appointment.doctor_slot_id
-                    == new_slot.id,
-                    Appointment.status.in_(
-                        ACTIVE_STATUSES
-                    ),
-                    Appointment.id
-                    != appointment.id,
+            if (
+                old_slot is not None
+                and old_slot.id == new_slot.id
+            ):
+                raise AppointmentStateError(
+                    "Appointment is already scheduled for this slot."
+                )
+
+            destination_count = (
+                await self.active_slot_count(
+                    slot_id=new_slot.id,
+                    exclude_appointment_id=appointment.id,
                 )
             )
 
-            if occupied is not None:
+            if destination_count >= new_slot.capacity:
+                new_slot.is_available = False
+
                 raise SlotUnavailableError(
-                    "The requested new slot is already booked."
+                    "The requested new slot has reached capacity."
                 )
 
             old_payload = {
@@ -665,11 +717,6 @@ class AppointmentService:
                 ),
             }
 
-            if old_slot:
-                old_slot.is_available = True
-
-            new_slot.is_available = False
-
             appointment.doctor_slot_id = (
                 new_slot.id
             )
@@ -685,6 +732,17 @@ class AppointmentService:
             )
 
             appointment.cancelled_at = None
+
+            await self.session.flush()
+
+            if old_slot is not None:
+                await self.refresh_slot_availability(
+                    slot=old_slot,
+                )
+
+            await self.refresh_slot_availability(
+                slot=new_slot,
+            )
 
             await self.add_event(
                 appointment_id=appointment.id,

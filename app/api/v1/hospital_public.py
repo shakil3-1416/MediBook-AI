@@ -210,6 +210,7 @@ async def doctor_slots(
                 DoctorSlot.slot_date
                 <= today
                 + timedelta(days=days),
+                DoctorSlot.is_enabled.is_(True),
                 DoctorSlot.is_available
                 .is_(True),
             )

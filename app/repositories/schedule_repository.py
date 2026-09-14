@@ -26,6 +26,7 @@ class ScheduleRepository:
             .where(
                 DoctorSlot.doctor_id == doctor_id,
                 DoctorSlot.slot_date == slot_date,
+                DoctorSlot.is_enabled.is_(True),
                 DoctorSlot.is_available.is_(True),
             )
             .order_by(DoctorSlot.start_time.asc())

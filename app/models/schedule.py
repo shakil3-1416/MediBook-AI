@@ -1,7 +1,7 @@
 from datetime import date, time
 from uuid import UUID
 
-from sqlalchemy import Boolean, Date, ForeignKey, Time, UniqueConstraint
+from sqlalchemy import Boolean, CheckConstraint, Date, ForeignKey, Integer, Time, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
@@ -12,11 +12,24 @@ class DoctorSlot(Base, UUIDPrimaryKeyMixin, TimestampMixin):
 
     __table_args__ = (
         UniqueConstraint(
-            "doctor_id",
+            "hospital_doctor_id",
             "slot_date",
             "start_time",
-            name="uq_doctor_slot",
+            name="uq_hospital_doctor_slot",
         ),
+        CheckConstraint(
+            "capacity BETWEEN 1 AND 50",
+            name="ck_doctor_slots_capacity",
+        ),
+    )
+
+    hospital_doctor_id: Mapped[UUID] = mapped_column(
+        ForeignKey(
+            "hospital_doctors.id",
+            ondelete="CASCADE",
+        ),
+        nullable=False,
+        index=True,
     )
 
     doctor_id: Mapped[UUID] = mapped_column(
@@ -33,6 +46,18 @@ class DoctorSlot(Base, UUIDPrimaryKeyMixin, TimestampMixin):
 
     start_time: Mapped[time] = mapped_column(
         Time,
+        nullable=False,
+    )
+
+    capacity: Mapped[int] = mapped_column(
+        Integer,
+        default=1,
+        nullable=False,
+    )
+
+    is_enabled: Mapped[bool] = mapped_column(
+        Boolean,
+        default=True,
         nullable=False,
     )
 

@@ -111,9 +111,9 @@ class Appointment(
 
     __table_args__ = (
         Index(
-            "uq_active_appointment_slot",
+            "ix_active_appointment_slot",
             "doctor_slot_id",
-            unique=True,
+            unique=False,
             postgresql_where=text(
                 "status IN ('confirmed', 'checked_in')"
             ),

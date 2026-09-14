@@ -142,6 +142,7 @@ class HospitalDirectoryService:
                 >= start_date,
                 DoctorSlot.slot_date
                 <= end_date,
+                DoctorSlot.is_enabled.is_(True),
                 DoctorSlot.is_available
                 .is_(True),
             )
