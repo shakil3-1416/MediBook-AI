@@ -234,8 +234,8 @@ class AppointmentService:
                 select(DoctorSlot)
                 .join(
                     HospitalDoctor,
-                    HospitalDoctor.doctor_id
-                    == DoctorSlot.doctor_id,
+                    HospitalDoctor.id
+                    == DoctorSlot.hospital_doctor_id,
                 )
                 .options(
                     selectinload(
@@ -646,8 +646,8 @@ class AppointmentService:
                 select(DoctorSlot)
                 .join(
                     HospitalDoctor,
-                    HospitalDoctor.doctor_id
-                    == DoctorSlot.doctor_id,
+                    HospitalDoctor.id
+                    == DoctorSlot.hospital_doctor_id,
                 )
                 .options(
                     selectinload(
