@@ -231,6 +231,51 @@ class HospitalIntegration(Base):
         default="not_configured",
     )
 
+    integration_type: Mapped[str] = mapped_column(
+        String(64),
+        nullable=False,
+        default="custom",
+        server_default="custom",
+    )
+
+    source_mode: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="managed",
+        server_default="managed",
+    )
+
+    sync_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="idle",
+        server_default="idle",
+    )
+
+    ownership: Mapped[dict] = mapped_column(
+        JSONB,
+        nullable=False,
+        default=dict,
+        server_default=text("{}::jsonb"),
+    )
+
+    last_sync_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True,
+    )
+
+    last_error: Mapped[str | None] = mapped_column(
+        String(500),
+        nullable=True,
+    )
+
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=True,
+        server_default="true",
+    )
+
     config: Mapped[dict] = mapped_column(
         JSONB,
         nullable=False,

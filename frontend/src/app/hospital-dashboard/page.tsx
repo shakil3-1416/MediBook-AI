@@ -307,6 +307,13 @@ export default function HospitalDashboardPage() {
 
 <div className="flex items-center gap-3">
             <Link
+              href="/hospital-dashboard/integrations"
+              className="rounded-xl border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-100"
+            >
+              Integrations
+            </Link>
+
+            <Link
               href="/hospital-dashboard/schedules"
               className="rounded-xl border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-100"
             >

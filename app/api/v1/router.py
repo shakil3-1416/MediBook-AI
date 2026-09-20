@@ -78,3 +78,13 @@ api_router.include_router(hospital_doctor_registry.router)
 
 from app.api.v1 import hospital_schedules
 api_router.include_router(hospital_schedules.router)
+
+
+from app.api.v1 import hospital_integrations
+api_router.include_router(hospital_integrations.router)
+
+from app.api.v1 import hospital_admin_ops
+api_router.include_router(hospital_admin_ops.router)
+
+from app.api.v1 import platform_control
+api_router.include_router(platform_control.router)
