@@ -12,16 +12,29 @@ const BACKEND =
   process.env.BACKEND_URL ??
   "http://127.0.0.1:8000";
 
+const RESOURCES =
+  new Set([
+    "audit",
+    "staff",
+    "settings",
+  ]);
+
 
 async function relay(
   request: NextRequest,
   method: string,
 ) {
+  const cookieStore =
+    await cookies();
+
   const token =
-    (
-      await cookies()
-    ).get(
+    cookieStore.get(
       "medibook_hospital_session",
+    )?.value;
+
+  const hospital =
+    cookieStore.get(
+      "medibook_active_hospital",
     )?.value;
 
   if (!token) {
@@ -36,23 +49,28 @@ async function relay(
     );
   }
 
-  const params =
-    request.nextUrl.searchParams;
-
-  const hospital =
-    params.get("hospital") ??
-    "medibook-demo";
+  if (!hospital) {
+    return NextResponse.json(
+      {
+        detail:
+          "No active hospital workspace selected.",
+      },
+      {
+        status: 422,
+      },
+    );
+  }
 
   const resource =
-    params.get("resource") ??
-    "audit";
+    request.nextUrl
+      .searchParams
+      .get("resource");
 
   if (
-    ![
-      "audit",
-      "staff",
-      "settings",
-    ].includes(resource)
+    !resource ||
+    !RESOURCES.has(
+      resource,
+    )
   ) {
     return NextResponse.json(
       {
@@ -65,21 +83,64 @@ async function relay(
     );
   }
 
+  const id =
+    request.nextUrl
+      .searchParams
+      .get("id");
+
+  const params =
+    new URLSearchParams(
+      request.nextUrl.searchParams,
+    );
+
+  params.delete(
+    "resource",
+  );
+
+  params.delete(
+    "id",
+  );
+
+  let url =
+    `${BACKEND}/api/v1/hospital-operations/${encodeURIComponent(
+      hospital,
+    )}/${resource}`;
+
+  if (id) {
+    url +=
+      `/${encodeURIComponent(id)}`;
+  }
+
+  const suffix =
+    params.toString();
+
+  if (suffix) {
+    url +=
+      `?${suffix}`;
+  }
+
+  const body =
+    method === "GET"
+      ? undefined
+      : await request.text();
+
   const response =
     await fetch(
-      `${BACKEND}/api/v1/hospital-operations/${encodeURIComponent(hospital)}/${resource}`,
+      url,
       {
         method,
         headers: {
           Authorization:
             `Bearer ${token}`,
-          "Content-Type":
-            "application/json",
+          ...(body
+            ? {
+                "Content-Type":
+                  "application/json",
+              }
+            : {}),
         },
         body:
-          method === "GET"
-            ? undefined
-            : await request.text(),
+          body || undefined,
         cache:
           "no-store",
       },
@@ -118,5 +179,15 @@ export function PATCH(
   return relay(
     request,
     "PATCH",
+  );
+}
+
+
+export function POST(
+  request: NextRequest,
+) {
+  return relay(
+    request,
+    "POST",
   );
 }

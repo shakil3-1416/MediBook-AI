@@ -241,6 +241,19 @@ export async function PATCH(
       body.doctor_id ?? "",
     ).trim();
 
+  if (!hospital) {
+    return NextResponse.json(
+      {
+        detail:
+          "No active hospital workspace selected.",
+      },
+      {
+        status: 422,
+      },
+    );
+  }
+
+
   const resource =
     String(
       body.resource ?? "",

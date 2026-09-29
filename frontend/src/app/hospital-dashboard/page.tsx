@@ -2,9 +2,6 @@
 
 import { useRouter } from "next/navigation";
 
-import Link from "next/link";
-
-
 import {
   useEffect,
   useMemo,
@@ -147,7 +144,7 @@ export default function HospitalDashboardPage() {
     try {
       const response =
         await fetch(
-          "/api/dashboard/hospital-summary?hospital=medibook-demo",
+          "/api/dashboard/hospital-summary",
           {
             cache:
               "no-store",
@@ -306,26 +303,7 @@ export default function HospitalDashboardPage() {
 
 
 <div className="flex items-center gap-3">
-            <Link
-              href="/hospital-dashboard/integrations"
-              className="rounded-xl border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-100"
-            >
-              Integrations
-            </Link>
 
-            <Link
-              href="/hospital-dashboard/schedules"
-              className="rounded-xl border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-100"
-            >
-              Schedules
-            </Link>
-
-            <Link
-              href="/hospital-dashboard/appointments"
-              className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
-            >
-              Appointments
-            </Link>
 
             <StatusBadge
               value={

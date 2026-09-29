@@ -40,13 +40,20 @@ export async function GET(
 
 
   const hospitalSlug =
-    request.nextUrl
-      .searchParams
-      .get(
-        "hospital",
-      )
-      ??
-      "medibook-demo";
+    request.nextUrl.searchParams.get("hospital");
+
+
+  if (!hospitalSlug) {
+    return NextResponse.json(
+      {
+        detail:
+          "No active hospital workspace selected.",
+      },
+      {
+        status: 422,
+      },
+    );
+  }
 
 
   const response =

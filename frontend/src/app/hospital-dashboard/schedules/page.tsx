@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   useEffect,
   useState,
@@ -69,7 +68,7 @@ type Preview = {
 
 
 const HOSPITAL =
-  "medibook-demo";
+  "";
 
 const WEEKDAYS = [
   "Monday",
@@ -684,19 +683,7 @@ export default function HospitalSchedulesPage() {
           </div>
 
           <div className="flex gap-2">
-            <Link
-              href="/hospital-dashboard"
-              className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700"
-            >
-              Overview
-            </Link>
 
-            <Link
-              href="/hospital-dashboard/appointments"
-              className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white"
-            >
-              Appointments
-            </Link>
           </div>
         </div>
       </header>

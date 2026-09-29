@@ -45,11 +45,29 @@ export async function GET(
 
 
   const hospital =
+    (
+      await cookies()
+    ).get(
+      "medibook_active_hospital",
+    )?.value
+    ??
     query.get(
       "hospital",
     )
     ??
-    "medibook-demo";
+    "";
+
+  if (!hospital) {
+    return NextResponse.json(
+      {
+        detail:
+          "No active hospital workspace selected.",
+      },
+      {
+        status: 422,
+      },
+    );
+  }
 
 
   const backendQuery =
@@ -93,6 +111,19 @@ export async function GET(
         ? `?${suffix}`
         : ""
     );
+
+
+  if (!hospital) {
+    return NextResponse.json(
+      {
+        detail:
+          "No active hospital workspace selected.",
+      },
+      {
+        status: 422,
+      },
+    );
+  }
 
 
   const response =

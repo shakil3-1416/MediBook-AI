@@ -1,3 +1,6 @@
+from app.api.v1 import platform_control_v2
+from app.api.v1 import hospital_copilot
+from app.api.v1 import hospital_staff_admin
 from app.api.v1 import hospital_public
 from app.api.v1 import workspaces
 from app.api.v1 import conversations
@@ -88,3 +91,9 @@ api_router.include_router(hospital_admin_ops.router)
 
 from app.api.v1 import platform_control
 api_router.include_router(platform_control.router)
+
+api_router.include_router(hospital_staff_admin.router)
+
+api_router.include_router(hospital_copilot.router)
+
+api_router.include_router(platform_control_v2.router)

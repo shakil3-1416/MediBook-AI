@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import Link from "next/link";
 
 import {
@@ -76,9 +74,6 @@ function badge(
 
 
 export default function HospitalAppointmentsPage() {
-  const router =
-    useRouter();
-
 
   const [
     data,
@@ -163,7 +158,7 @@ export default function HospitalAppointmentsPage() {
     const params =
       new URLSearchParams({
         hospital:
-          "medibook-demo",
+          "",
 
         limit:
           "200",

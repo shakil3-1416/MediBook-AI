@@ -35,6 +35,13 @@ from app.services.hospital_doctor_registry import (
 )
 
 
+from app.services.tenant_authorization import (
+    HospitalNotFound,
+    TenantAccessDenied,
+    require_hospital_admin,
+)
+
+
 router = APIRouter(
     prefix="/hospital-operations",
     tags=["hospital-doctor-registry"],
@@ -112,6 +119,31 @@ async def _hospital_access(
         )
 
     return hospital
+
+
+async def _require_doctor_mutation_admin(
+    session: AsyncSession,
+    *,
+    hospital: Hospital,
+    current_user,
+) -> None:
+    try:
+        await require_hospital_admin(
+            session,
+            user_id=current_user.id,
+            hospital_id=hospital.id,
+        )
+    except HospitalNotFound as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+    except TenantAccessDenied as exc:
+        raise HTTPException(
+            status_code=403,
+            detail=str(exc),
+        ) from exc
+
 
 
 def _actor_id(
@@ -218,6 +250,12 @@ async def create_hospital_doctor(
         hospital_slug=hospital_slug,
         current_user=current_user,
         session=session,
+    )
+
+    await _require_doctor_mutation_admin(
+        session,
+        hospital=hospital,
+        current_user=current_user,
     )
 
     service = HospitalDoctorRegistryService(
@@ -372,6 +410,12 @@ async def update_hospital_doctor(
         hospital_slug=hospital_slug,
         current_user=current_user,
         session=session,
+    )
+
+    await _require_doctor_mutation_admin(
+        session,
+        hospital=hospital,
+        current_user=current_user,
     )
 
     service = HospitalDoctorRegistryService(
@@ -707,6 +751,12 @@ async def set_hospital_doctor_activation(
         hospital_slug=hospital_slug,
         current_user=current_user,
         session=session,
+    )
+
+    await _require_doctor_mutation_admin(
+        session,
+        hospital=hospital,
+        current_user=current_user,
     )
 
     service = HospitalDoctorRegistryService(

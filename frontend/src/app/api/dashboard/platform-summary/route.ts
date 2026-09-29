@@ -2,6 +2,10 @@ import {
   NextResponse,
 } from "next/server";
 
+import {
+  cookies,
+} from "next/headers";
+
 
 const BACKEND =
   process.env.BACKEND_URL ??
@@ -9,66 +13,62 @@ const BACKEND =
 
 
 export async function GET() {
-  const [
-    demo,
-    isolation,
-  ] =
-    await Promise.all([
-      fetch(
-        `${BACKEND}/api/v1/hospital-public/medibook-demo`,
-        {
-          cache:
-            "no-store",
-        },
-      ),
+  const store =
+    await cookies();
 
-      fetch(
-        `${BACKEND}/api/v1/hospital-public/medibook-isolation-test`,
-        {
-          cache:
-            "no-store",
-        },
-      ),
-    ]);
+  const token =
+    store.get(
+      "medibook_hospital_session",
+    )?.value ??
+    store.get(
+      "medibook_access_token",
+    )?.value;
 
 
-  const hospitals =
-    [];
-
-
-  if (demo.ok) {
-    hospitals.push(
-      await demo.json(),
+  if (!token) {
+    return NextResponse.json(
+      {
+        detail:
+          "Authentication required.",
+      },
+      {
+        status: 401,
+      },
     );
   }
 
 
-  if (isolation.ok) {
-    hospitals.push(
-      await isolation.json(),
+  const response =
+    await fetch(
+      `${BACKEND}/api/v1/platform-control-v2/overview`,
+      {
+        method:
+          "GET",
+
+        headers: {
+          Authorization:
+            `Bearer ${token}`,
+        },
+
+        cache:
+          "no-store",
+      },
     );
-  }
 
 
-  return NextResponse.json({
-    hospitals,
-    total_hospitals:
-      hospitals.length,
+  return new NextResponse(
+    await response.text(),
+    {
+      status:
+        response.status,
 
-    total_doctors:
-      hospitals.reduce(
-        (
-          total,
-          hospital,
-        ) =>
-          total
-          +
-          (
-            hospital
-              .doctor_count
-            ?? 0
-          ),
-        0,
-      ),
-  });
+      headers: {
+        "Content-Type":
+          response.headers.get(
+            "content-type",
+          ) ??
+          "application/json",
+      },
+    },
+  );
 }

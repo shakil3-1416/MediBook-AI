@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   useEffect,
   useState,
@@ -22,7 +21,7 @@ type Integration = {
 
 
 const HOSPITAL =
-  "medibook-demo";
+  "";
 
 
 export default function IntegrationsPage() {
@@ -180,12 +179,6 @@ export default function IntegrationsPage() {
             </p>
           </div>
 
-          <Link
-            href="/hospital-dashboard"
-            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm"
-          >
-            Overview
-          </Link>
         </div>
       </header>
 

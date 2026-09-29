@@ -42,9 +42,11 @@ async function relay(
   }
 
   const hospital =
-    request.nextUrl.searchParams
-      .get("hospital") ??
-    "medibook-demo";
+    (
+      await cookies()
+    ).get(
+      "medibook_active_hospital",
+    )?.value ?? "";
 
   const id =
     request.nextUrl.searchParams
@@ -71,6 +73,19 @@ async function relay(
     method === "GET"
       ? undefined
       : await request.text();
+
+  if (!hospital) {
+    return NextResponse.json(
+      {
+        detail:
+          "No active hospital workspace selected.",
+      },
+      {
+        status: 422,
+      },
+    );
+  }
+
 
   const response =
     await fetch(
