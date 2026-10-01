@@ -427,7 +427,7 @@ export default function AppointmentsPage() {
 
       const response =
         await fetch(
-          `/api/doctors/${appointment.doctor.id}`,
+          `/api/directory/doctors/${appointment.doctor.id}`,
           {
             cache: "no-store",
           },

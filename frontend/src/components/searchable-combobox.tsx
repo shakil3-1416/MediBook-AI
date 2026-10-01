@@ -24,7 +24,7 @@ export type SearchOption = {
 export function SearchableCombobox({
   label,
   value,
-  options,
+  options: rawOptions,
   placeholder,
   disabled = false,
   onChange,
@@ -38,6 +38,9 @@ export function SearchableCombobox({
     value: string,
   ) => void;
 }) {
+
+  // Facet lists can be missing while data loads or after an API error.
+  const options = rawOptions ?? [];
 
   const [
     text,

@@ -300,7 +300,7 @@ export default function DoctorsPage() {
             try {
               const response =
                 await fetch(
-                  `/api/doctors?${params.toString()}`,
+                  `/api/directory/doctors?${params.toString()}`,
                   {
                     cache:
                       "no-store",

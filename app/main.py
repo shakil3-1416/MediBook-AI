@@ -207,3 +207,16 @@ for _m6_route in app.router.routes:
 
 app.router.routes[:] = _m6_routes
 app.openapi_schema = None
+
+
+# M7_AUTHORIZATION_ERROR_HANDLER
+# Authorization failures raised outside FastAPI dependencies must answer 403
+# instead of surfacing as 500 errors.
+from fastapi.responses import JSONResponse as _M7JSONResponse  # noqa: E402
+
+from app.services.tenant_authorization import TenantAccessDenied as _M7AuthorizationError  # noqa: E402
+
+
+@app.exception_handler(_M7AuthorizationError)
+async def _m7_authorization_error(_request, exc):
+    return _M7JSONResponse(status_code=403, content={"detail": str(exc) or "Forbidden"})

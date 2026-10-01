@@ -154,7 +154,7 @@ export default function DoctorProfilePage({
 
           const response =
             await fetch(
-              `/api/doctors/${id}`,
+              `/api/directory/doctors/${id}`,
               {
                 cache:
                   "no-store",
