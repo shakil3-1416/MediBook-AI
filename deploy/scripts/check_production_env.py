@@ -61,6 +61,7 @@ required = [
     "MEDIBOOK_SMTP_PORT",
     "MEDIBOOK_SMTP_FROM",
     "MEDIBOOK_PROFILE_STORAGE",
+    "MEDIBOOK_ALLOWED_ORIGINS",
 ]
 
 
@@ -118,6 +119,33 @@ if delivery not in {"smtp"}:
     failures.append(
         "MEDIBOOK_VERIFICATION_DELIVERY must be smtp in production"
     )
+
+
+for key, value in sorted(values.items()):
+
+    message = f"{key} still uses placeholder"
+
+    if "CHANGE_ME" in value and message not in failures:
+
+        failures.append(message)
+
+
+for key in ("FRONTEND_ORIGIN", "MEDIBOOK_ALLOWED_ORIGINS"):
+
+    for origin in values.get(key, "").split(","):
+
+        origin = origin.strip().strip('"').strip("'")
+
+        message = f"{key} must use https:// in production"
+
+        if (
+            origin
+            and "CHANGE_ME" not in origin
+            and not origin.startswith("https://")
+            and message not in failures
+        ):
+
+            failures.append(message)
 
 
 jwt = values.get(

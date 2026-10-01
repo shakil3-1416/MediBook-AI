@@ -5,8 +5,9 @@
                                    (default medibook-demo)
   e2e-platform-admin@example.com   role platform_admin
 
-It also links one doctor that the primary hospital does not have to the second
-hospital (inactive), so the object-level authorization probe has a target.
+It also makes sure the second hospital has a doctor the primary hospital does
+not have (an existing one, or a hidden "E2E Isolation Doctor" copied from an
+existing record), linked inactive, so object-level authorization can be probed.
 
 Every run sets fresh random passwords and writes emails, passwords and hospital
 slugs as KEY=VALUE lines to the file given as the only argument (mode 600).
@@ -25,7 +26,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from sqlalchemy import Boolean, DateTime, inspect as sa_inspect, select
+from sqlalchemy import Boolean, DateTime, UniqueConstraint, inspect as sa_inspect, select
 
 from app.core import roles
 from app.core.config import settings
@@ -37,6 +38,8 @@ from app.models.user import User
 HOSPITAL_SLUG = os.getenv("E2E_HOSPITAL_SLUG", "medibook-demo")
 POSITIVE_FLAGS = ("active", "verified", "enabled")
 NEGATIVE_FLAGS = ("inactive", "disabled", "locked", "deleted", "banned", "suspended")
+HIDDEN_FLAGS = ("active", "public", "publish", "visible", "verified", "available", "featured", "enabled")
+ISOLATION_DOCTOR = "E2E Isolation Doctor"
 
 
 def _environment() -> str:
@@ -147,6 +150,45 @@ async def _hospital_user_role(session) -> str:
     return found or roles.PATIENT
 
 
+async def _create_isolation_doctor(session, doctor_model):
+    """Copy an existing doctor into a hidden test doctor with unique fields marked."""
+    template = await session.scalar(select(doctor_model).limit(1))
+    if template is None:
+        return None
+    table = doctor_model.__table__
+    keys = _attribute_keys(doctor_model)
+    unique = {c.name for c in table.columns if c.unique}
+    for constraint in table.constraints:
+        if isinstance(constraint, UniqueConstraint):
+            unique.update(c.name for c in constraint.columns)
+    for index in table.indexes:
+        if index.unique:
+            unique.update(c.name for c in index.columns)
+    marker = "e2e-iso-" + secrets.token_hex(3)
+    now = datetime.now(timezone.utc)
+    values = {}
+    for column in table.columns:
+        lowered = column.name.lower()
+        value = getattr(template, keys[column.name])
+        if column.primary_key:
+            value = uuid.uuid4()
+        elif isinstance(column.type, Boolean) and any(word in lowered for word in HIDDEN_FLAGS):
+            value = False
+        elif isinstance(column.type, DateTime) and lowered in ("created_at", "updated_at"):
+            value = now
+        elif "name" in lowered and isinstance(value, str):
+            value = ISOLATION_DOCTOR
+        if column.name in unique and isinstance(value, str):
+            length = getattr(column.type, "length", None) or 255
+            value = (marker + "-" + value)[:length]
+        values[column.name] = value
+    async with session.begin_nested():
+        doctor = _build(doctor_model, values)
+        session.add(doctor)
+        await session.flush()
+        return doctor.id
+
+
 async def _ensure_isolation_fixture(session, primary, other) -> str:
     if other is None:
         return "no second hospital"
@@ -163,13 +205,21 @@ async def _ensure_isolation_fixture(session, primary, other) -> str:
     if existing is not None:
         return f"fixture present in {other.slug}"
     candidate = await session.scalar(select(Doctor.id).where(Doctor.id.notin_(primary_doctors)).limit(1))
+    created = False
     if candidate is None:
-        return "every doctor already belongs to the primary hospital; fixture skipped"
+        try:
+            candidate = await _create_isolation_doctor(session, Doctor)
+            created = candidate is not None
+        except Exception as exc:
+            return f"could not create an isolation doctor ({type(exc).__name__}: {str(exc)[:160]})"
+    if candidate is None:
+        return "no doctor available for the fixture"
     values = {"hospital_id": other.id, "doctor_id": candidate, "is_active": False}
     _complete(HospitalDoctor, values, "E2E")
-    session.add(_build(HospitalDoctor, values))
-    await session.flush()
-    return f"linked one inactive doctor to {other.slug}"
+    async with session.begin_nested():
+        session.add(_build(HospitalDoctor, values))
+        await session.flush()
+    return ("created a hidden test doctor and " if created else "") + f"linked it to {other.slug} (inactive)"
 
 
 async def main(out_path: str) -> None:
