@@ -5,6 +5,9 @@
                                    (default medibook-demo)
   e2e-platform-admin@example.com   role platform_admin
 
+It also links one doctor that the primary hospital does not have to the second
+hospital (inactive), so the object-level authorization probe has a target.
+
 Every run sets fresh random passwords and writes emails, passwords and hospital
 slugs as KEY=VALUE lines to the file given as the only argument (mode 600).
 Refuses to run when APP_ENV is production.
@@ -28,7 +31,7 @@ from app.core import roles
 from app.core.config import settings
 from app.core.database import get_db_session
 from app.core.security import hash_password
-from app.models.hospital import Hospital, HospitalMembership
+from app.models.hospital import Hospital, HospitalDoctor, HospitalMembership
 from app.models.user import User
 
 HOSPITAL_SLUG = os.getenv("E2E_HOSPITAL_SLUG", "medibook-demo")
@@ -144,6 +147,31 @@ async def _hospital_user_role(session) -> str:
     return found or roles.PATIENT
 
 
+async def _ensure_isolation_fixture(session, primary, other) -> str:
+    if other is None:
+        return "no second hospital"
+    try:
+        from app.models.doctor import Doctor
+    except ImportError:
+        return "doctor model not importable; fixture skipped"
+    primary_doctors = select(HospitalDoctor.doctor_id).where(HospitalDoctor.hospital_id == primary.id)
+    existing = await session.scalar(
+        select(HospitalDoctor.doctor_id)
+        .where(HospitalDoctor.hospital_id == other.id, HospitalDoctor.doctor_id.notin_(primary_doctors))
+        .limit(1)
+    )
+    if existing is not None:
+        return f"fixture present in {other.slug}"
+    candidate = await session.scalar(select(Doctor.id).where(Doctor.id.notin_(primary_doctors)).limit(1))
+    if candidate is None:
+        return "every doctor already belongs to the primary hospital; fixture skipped"
+    values = {"hospital_id": other.id, "doctor_id": candidate, "is_active": False}
+    _complete(HospitalDoctor, values, "E2E")
+    session.add(_build(HospitalDoctor, values))
+    await session.flush()
+    return f"linked one inactive doctor to {other.slug}"
+
+
 async def main(out_path: str) -> None:
     if _environment() in {"production", "prod"}:
         raise SystemExit("refusing to create test accounts when APP_ENV is production")
@@ -154,14 +182,16 @@ async def main(out_path: str) -> None:
         hospital = await session.scalar(select(Hospital).where(Hospital.slug == HOSPITAL_SLUG))
         if hospital is None:
             raise SystemExit(f"hospital {HOSPITAL_SLUG} not found")
-        other_slug = await session.scalar(
-            select(Hospital.slug).where(Hospital.slug.notin_([HOSPITAL_SLUG])).order_by(Hospital.slug).limit(1)
+        other_hospital = await session.scalar(
+            select(Hospital).where(Hospital.slug.notin_([HOSPITAL_SLUG])).order_by(Hospital.slug).limit(1)
         )
         member_role = await _hospital_user_role(session)
         await _upsert_user(session, "e2e-patient@example.com", roles.PATIENT, "E2E Patient", passwords["PATIENT"])
         admin = await _upsert_user(session, "e2e-hospital-admin@example.com", member_role, "E2E Hospital Admin", passwords["HOSPITAL"])
         await _ensure_membership(session, admin, hospital)
         await _upsert_user(session, "e2e-platform-admin@example.com", roles.PLATFORM_ADMIN, "E2E Platform Admin", passwords["PLATFORM"])
+        print("isolation fixture:", await _ensure_isolation_fixture(session, hospital, other_hospital))
+        other_slug = other_hospital.slug if other_hospital is not None else ""
         await session.commit()
     finally:
         await gen.aclose()
@@ -173,7 +203,7 @@ async def main(out_path: str) -> None:
         "E2E_PLATFORM_EMAIL=e2e-platform-admin@example.com",
         "E2E_PLATFORM_PASSWORD=" + passwords["PLATFORM"],
         "E2E_HOSPITAL_SLUG=" + HOSPITAL_SLUG,
-        "E2E_OTHER_HOSPITAL_SLUG=" + (other_slug or ""),
+        "E2E_OTHER_HOSPITAL_SLUG=" + other_slug,
     ]
     path = Path(out_path)
     path.touch(mode=0o600, exist_ok=True)
