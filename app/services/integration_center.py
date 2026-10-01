@@ -1,5 +1,16 @@
 from __future__ import annotations
 
+from app.services.integration_contract_validation import (
+    validate_integration_contract,
+    validate_hospital_integration_model,
+)
+
+from app.services.integration_config_security import (
+    prepare_integration_config_for_public_response,
+    prepare_integration_config_for_runtime,
+    prepare_integration_config_for_storage,
+)
+
 from abc import ABC, abstractmethod
 from datetime import datetime, timezone
 from uuid import UUID
@@ -311,3 +322,45 @@ class IntegrationCenter:
             "updated_at":
                 integration.updated_at,
         }
+
+
+def integration_config_for_runtime(
+    integration,
+):
+    return prepare_integration_config_for_runtime(
+        getattr(
+            integration,
+            "config",
+            None,
+        )
+    )
+
+
+def integration_config_for_public_response(
+    integration,
+):
+    return prepare_integration_config_for_public_response(
+        getattr(
+            integration,
+            "config",
+            None,
+        )
+    )
+
+
+def validate_integration_configuration(
+    *,
+    source_mode,
+    provider,
+    ownership,
+):
+    return validate_integration_contract(
+        source_mode=
+            source_mode,
+
+        provider=
+            provider,
+
+        ownership=
+            ownership,
+    )

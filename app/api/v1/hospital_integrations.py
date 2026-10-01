@@ -1,5 +1,17 @@
 from __future__ import annotations
 
+from app.services.integration_contract_validation import (
+    validate_integration_contract,
+    validate_hospital_integration_model,
+)
+from app.services.integration_ownership import (
+    IntegrationOwnershipError,
+)
+
+from app.services.integration_config_security import (
+    prepare_integration_config_for_public_response,
+)
+
 from typing import Annotated
 from uuid import UUID
 
@@ -348,3 +360,30 @@ async def health_check(
         ),
         "health": result,
     }
+
+
+def _validate_contract_or_422(
+    *,
+    source_mode,
+    provider,
+    ownership,
+):
+    try:
+        return validate_integration_contract(
+            source_mode=
+                source_mode,
+
+            provider=
+                provider,
+
+            ownership=
+                ownership,
+        )
+
+    except IntegrationOwnershipError as exc:
+        raise HTTPException(
+            status_code=422,
+            detail=str(
+                exc
+            ),
+        ) from exc

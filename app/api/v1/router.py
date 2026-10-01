@@ -1,3 +1,5 @@
+from app.api.v1 import system_health
+from app.api.v1 import hospital_integration_sync
 from app.api.v1 import platform_control_v2
 from app.api.v1 import hospital_copilot
 from app.api.v1 import hospital_staff_admin
@@ -97,3 +99,5 @@ api_router.include_router(hospital_staff_admin.router)
 api_router.include_router(hospital_copilot.router)
 
 api_router.include_router(platform_control_v2.router)
+api_router.include_router(hospital_integration_sync.router)
+api_router.include_router(system_health.router)
