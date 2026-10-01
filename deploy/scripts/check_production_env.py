@@ -54,6 +54,13 @@ required = [
     "JWT_ALGORITHM",
     "MEDIBOOK_DOMAIN",
     "FRONTEND_ORIGIN",
+    "MEDIBOOK_INTEGRATION_MASTER_KEY",
+    "MEDIBOOK_OTP_SECRET",
+    "MEDIBOOK_VERIFICATION_DELIVERY",
+    "MEDIBOOK_SMTP_HOST",
+    "MEDIBOOK_SMTP_PORT",
+    "MEDIBOOK_SMTP_FROM",
+    "MEDIBOOK_PROFILE_STORAGE",
 ]
 
 
@@ -78,6 +85,39 @@ for key in required:
         failures.append(
             f"{key} still uses placeholder"
         )
+
+
+storage = values.get("MEDIBOOK_PROFILE_STORAGE", "").strip().lower()
+
+if storage in {"", "local"}:
+
+    failures.append(
+        "MEDIBOOK_PROFILE_STORAGE must be S3-compatible in production "
+        "(local files are lost when containers are recreated)"
+    )
+
+else:
+
+    for key in (
+        "MEDIBOOK_S3_BUCKET",
+        "MEDIBOOK_S3_ACCESS_KEY_ID",
+        "MEDIBOOK_S3_SECRET_ACCESS_KEY",
+    ):
+
+        if not values.get(key, ""):
+
+            failures.append(
+                f"{key} missing (required for S3 profile storage)"
+            )
+
+
+delivery = values.get("MEDIBOOK_VERIFICATION_DELIVERY", "smtp").strip().lower()
+
+if delivery not in {"smtp"}:
+
+    failures.append(
+        "MEDIBOOK_VERIFICATION_DELIVERY must be smtp in production"
+    )
 
 
 jwt = values.get(

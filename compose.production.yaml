@@ -61,6 +61,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend.prod
+    image: medibook-backend:prod
 
     restart: unless-stopped
 
@@ -73,6 +74,9 @@ services:
 
       redis:
         condition: service_healthy
+
+      migrate:
+        condition: service_completed_successfully
 
     expose:
       - "8000"
@@ -91,6 +95,57 @@ services:
       interval: 15s
       timeout: 5s
       retries: 10
+
+    networks:
+      - medibook_internal
+
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend.prod
+    image: medibook-backend:prod
+
+    command: ["python", "-m", "app.db_bootstrap"]
+
+    restart: "no"
+
+    env_file:
+      - .env.production
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - medibook_internal
+
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend.prod
+    image: medibook-backend:prod
+
+    command: ["python", "scripts/run_integration_sync_worker.py"]
+
+    restart: unless-stopped
+
+    env_file:
+      - .env.production
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+      redis:
+        condition: service_healthy
+
+      migrate:
+        condition: service_completed_successfully
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
     networks:
       - medibook_internal

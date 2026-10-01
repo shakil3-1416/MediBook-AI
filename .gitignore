@@ -51,3 +51,6 @@ temp/
 medibook_finish_report/
 medibook_ai.egg-info/
 deploy/backups/
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
