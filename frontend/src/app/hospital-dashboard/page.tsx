@@ -1,5 +1,7 @@
 "use client";
 
+import { readErrorMessage } from "@/lib/error-message";
+
 import { useRouter } from "next/navigation";
 
 import {
@@ -162,12 +164,11 @@ export default function HospitalDashboardPage() {
 
 
       if (!response.ok) {
-        const body =
-          await response.text();
-
         throw new Error(
-          body ||
-          `HTTP ${response.status}`,
+          await readErrorMessage(
+            response,
+            "Could not load the hospital overview.",
+          ),
         );
       }
 

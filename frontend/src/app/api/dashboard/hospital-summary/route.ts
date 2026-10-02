@@ -7,6 +7,10 @@ import {
   cookies,
 } from "next/headers";
 
+import {
+  activeHospitalSlug,
+} from "@/lib/server/hospital-context";
+
 
 const BACKEND =
   process.env.BACKEND_URL ??
@@ -40,7 +44,9 @@ export async function GET(
 
 
   const hospitalSlug =
-    request.nextUrl.searchParams.get("hospital");
+    await activeHospitalSlug(
+      request.nextUrl.searchParams.get("hospital"),
+    );
 
 
   if (!hospitalSlug) {

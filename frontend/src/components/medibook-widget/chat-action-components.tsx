@@ -221,7 +221,7 @@ function AvailabilityGroup({
         )}
       </div>
 
-      <p className="mt-3 text-xs text-slate-400">
+      <p className="mt-3 text-xs text-slate-500">
         Tell MediBook which time you prefer.
       </p>
     </section>
@@ -271,7 +271,7 @@ function AppointmentPreview({
         <dl className="mt-4 grid grid-cols-2 gap-4 text-sm">
           {data.date ? (
             <div>
-              <dt className="text-xs text-slate-400">
+              <dt className="text-xs text-slate-500">
                 Date
               </dt>
 
@@ -283,7 +283,7 @@ function AppointmentPreview({
 
           {data.start_time ? (
             <div>
-              <dt className="text-xs text-slate-400">
+              <dt className="text-xs text-slate-500">
                 Time
               </dt>
 
@@ -295,7 +295,7 @@ function AppointmentPreview({
 
           {data.clinic_name ? (
             <div className="col-span-2">
-              <dt className="text-xs text-slate-400">
+              <dt className="text-xs text-slate-500">
                 Hospital / chamber
               </dt>
 
@@ -307,7 +307,7 @@ function AppointmentPreview({
 
           {data.consultation_fee != null ? (
             <div>
-              <dt className="text-xs text-slate-400">
+              <dt className="text-xs text-slate-500">
                 Consultation fee
               </dt>
 
@@ -321,7 +321,7 @@ function AppointmentPreview({
           ) : null}
         </dl>
 
-        <p className="mt-4 border-t border-slate-100 pt-3 text-xs leading-5 text-slate-400">
+        <p className="mt-4 border-t border-slate-100 pt-3 text-xs leading-5 text-slate-500">
           Confirm or change this appointment by typing your response.
         </p>
       </div>

@@ -4,6 +4,8 @@ const BACKEND =
   process.env.BACKEND_URL ??
   "http://127.0.0.1:8000";
 
+const DEFAULT_NEXT = "/widget/medibook-demo";
+
 function safeNext(value: FormDataEntryValue | null) {
   if (
     typeof value === "string" &&
@@ -13,88 +15,57 @@ function safeNext(value: FormDataEntryValue | null) {
     return value;
   }
 
-  return "/widget/medibook-demo";
+  return DEFAULT_NEXT;
 }
 
-function loginUrl(
-  request: NextRequest,
-  next: string,
-  message: string,
-) {
-  const url = new URL(
-    "/login",
-    process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-  );
-
-  url.searchParams.set(
-    "next",
-    next,
-  );
-
-  url.searchParams.set(
-    "error",
-    message,
-  );
-
-  return url;
+/*
+ * Relative redirects keep people on the host and port they actually used.
+ * The previous absolute URLs were built from NEXT_PUBLIC_APP_URL and fell
+ * back to http://localhost:3000.
+ */
+function redirectTo(location: string) {
+  return new NextResponse(null, {
+    status: 303,
+    headers: { Location: location },
+  });
 }
 
-export async function POST(
-  request: NextRequest,
-) {
-  const form =
-    await request.formData();
+function backToLogin(next: string, message: string) {
+  const params = new URLSearchParams({ next, error: message });
+  return redirectTo(`/login?${params.toString()}`);
+}
 
-  const email =
-    String(
-      form.get("email") ?? "",
-    ).trim();
+/* Platform admins belong in the control center unless they asked for a staff page. */
+function landingFor(role: string | undefined, next: string) {
+  if (
+    role === "platform_admin" &&
+    next.startsWith("/control") === false &&
+    next.startsWith("/hospital-dashboard") === false
+  ) {
+    return "/control";
+  }
+  return next;
+}
 
-  const password =
-    String(
-      form.get("password") ?? "",
-    );
-
-  const next =
-    safeNext(
-      form.get("next"),
-    );
+export async function POST(request: NextRequest) {
+  const form = await request.formData();
+  const email = String(form.get("email") ?? "").trim();
+  const password = String(form.get("password") ?? "");
+  const next = safeNext(form.get("next"));
 
   if (!email || !password) {
-    return NextResponse.redirect(
-      loginUrl(
-        request,
-        next,
-        "Email and password are required.",
-      ),
-      303,
-    );
+    return backToLogin(next, "Email and password are required.");
   }
 
   try {
-    const response =
-      await fetch(
-        `${BACKEND}/api/v1/auth/login`,
-        {
-          method: "POST",
+    const response = await fetch(`${BACKEND}/api/v1/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+      cache: "no-store",
+    });
 
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-
-          body:
-            JSON.stringify({
-              email,
-              password,
-            }),
-
-          cache: "no-store",
-        },
-      );
-
-    const raw =
-      await response.text();
+    const raw = await response.text();
 
     let data: {
       detail?: unknown;
@@ -102,85 +73,41 @@ export async function POST(
       token?: string;
       session_token?: string;
       accessToken?: string;
+      user?: { role?: string };
     } = {};
 
     try {
-      data =
-        JSON.parse(raw);
+      data = JSON.parse(raw);
     } catch {
-      data = {
-        detail: raw,
-      };
+      data = { detail: raw };
     }
 
     if (!response.ok) {
-      return NextResponse.redirect(
-        loginUrl(
-          request,
-          next,
-          typeof data.detail ===
-            "string"
-            ? data.detail
-            : "Invalid email or password.",
-        ),
-        303,
+      return backToLogin(
+        next,
+        typeof data.detail === "string" ? data.detail : "Invalid email or password.",
       );
     }
 
     const token =
-      data.access_token ??
-      data.token ??
-      data.session_token ??
-      data.accessToken;
+      data.access_token ?? data.token ?? data.session_token ?? data.accessToken;
 
     if (!token) {
-      return NextResponse.redirect(
-        loginUrl(
-          request,
-          next,
-          "MediBook could not create your session.",
-        ),
-        303,
-      );
+      return backToLogin(next, "MediBook could not create your session.");
     }
 
-    const destination =
-      new URL(
-        next,
-        process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-      );
+    const result = redirectTo(landingFor(data.user?.role, next));
 
-    const result =
-      NextResponse.redirect(
-        destination,
-        303,
-      );
-
-    result.cookies.set(
-      "medibook_session",
-      token,
-      {
-        httpOnly: true,
-        sameSite: "lax",
-        secure:
-          process.env.NODE_ENV ===
-          "production",
-        path: "/",
-        maxAge:
-          60 * 60 * 24 * 7,
-      },
-    );
+    result.cookies.set("medibook_session", token, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
 
     return result;
-
   } catch {
-    return NextResponse.redirect(
-      loginUrl(
-        request,
-        next,
-        "Authentication service is unavailable.",
-      ),
-      303,
-    );
+    return backToLogin(next, "Authentication service is unavailable.");
   }
 }

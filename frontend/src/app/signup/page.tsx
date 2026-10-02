@@ -667,7 +667,7 @@ export default function SignupPage() {
                       className="mt-2 block w-full text-sm text-slate-600"
                     />
 
-                    <span className="mt-1 block text-xs text-slate-400">
+                    <span className="mt-1 block text-xs text-slate-500">
                       Optional
                     </span>
                   </label>

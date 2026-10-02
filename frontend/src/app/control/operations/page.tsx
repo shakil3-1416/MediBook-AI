@@ -1,5 +1,7 @@
 "use client";
 
+import { readErrorMessage } from "@/lib/error-message";
+
 import Link from "next/link";
 import {
   useEffect,
@@ -62,7 +64,10 @@ export default function ControlOperationsPage() {
           async (response) => {
             if (!response.ok) {
               throw new Error(
-                await response.text(),
+                await readErrorMessage(
+                  response,
+                  "Could not load platform operations.",
+                ),
               );
             }
 
@@ -73,7 +78,9 @@ export default function ControlOperationsPage() {
         .catch(
           (value) =>
             setError(
-              String(value),
+              value instanceof Error
+                ? value.message
+                : String(value),
             ),
         );
     },

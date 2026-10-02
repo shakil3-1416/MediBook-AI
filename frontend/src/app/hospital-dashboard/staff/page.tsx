@@ -406,7 +406,7 @@ export default function HospitalStaffPage() {
           <div className="relative">
             <Search
               size={17}
-              className="absolute left-3 top-3 text-slate-400"
+              className="absolute left-3 top-3 text-slate-500"
             />
 
             <input
@@ -456,7 +456,7 @@ export default function HospitalStaffPage() {
                       className="grid gap-4 p-5 lg:grid-cols-[1.2fr_1.2fr_220px_160px]"
                     >
                       <div>
-                        <div className="text-xs uppercase tracking-wide text-slate-400">
+                        <div className="text-xs uppercase tracking-wide text-slate-500">
                           Identity
                         </div>
 
@@ -476,7 +476,7 @@ export default function HospitalStaffPage() {
                       </div>
 
                       <div>
-                        <div className="text-xs uppercase tracking-wide text-slate-400">
+                        <div className="text-xs uppercase tracking-wide text-slate-500">
                           Role
                         </div>
 
@@ -518,7 +518,7 @@ export default function HospitalStaffPage() {
                       </div>
 
                       <div>
-                        <div className="text-xs uppercase tracking-wide text-slate-400">
+                        <div className="text-xs uppercase tracking-wide text-slate-500">
                           Access
                         </div>
 

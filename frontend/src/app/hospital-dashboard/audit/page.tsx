@@ -156,7 +156,7 @@ export default function HospitalAuditPage() {
           <div className="relative">
             <Search
               size={17}
-              className="absolute left-3 top-3 text-slate-400"
+              className="absolute left-3 top-3 text-slate-500"
             />
 
             <input
@@ -206,7 +206,7 @@ export default function HospitalAuditPage() {
                     className="grid gap-4 p-5 md:grid-cols-[1fr_1fr_1fr_1.2fr]"
                   >
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-slate-400">
+                      <div className="text-xs uppercase tracking-wide text-slate-500">
                         Action
                       </div>
                       <div className="mt-1 text-sm font-medium">
@@ -218,7 +218,7 @@ export default function HospitalAuditPage() {
                     </div>
 
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-slate-400">
+                      <div className="text-xs uppercase tracking-wide text-slate-500">
                         Actor
                       </div>
                       <div className="mt-1 text-sm">
@@ -231,7 +231,7 @@ export default function HospitalAuditPage() {
                     </div>
 
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-slate-400">
+                      <div className="text-xs uppercase tracking-wide text-slate-500">
                         Entity
                       </div>
                       <div className="mt-1 text-sm">
@@ -244,7 +244,7 @@ export default function HospitalAuditPage() {
                     </div>
 
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-slate-400">
+                      <div className="text-xs uppercase tracking-wide text-slate-500">
                         Time
                       </div>
                       <div className="mt-1 text-sm">

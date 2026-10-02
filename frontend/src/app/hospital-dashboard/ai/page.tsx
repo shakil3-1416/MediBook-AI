@@ -979,7 +979,7 @@ export default function HospitalCopilotPage() {
           </button>
         </form>
 
-        <p className="mx-auto mt-2 max-w-5xl text-center text-[11px] text-slate-400">
+        <p className="mx-auto mt-2 max-w-5xl text-center text-[11px] text-slate-500">
           AI interprets language. Deterministic hospital tools provide facts. Operational changes require an explicit proposal, human confirmation, and deterministic Schedule Engine execution.
         </p>
       </div>

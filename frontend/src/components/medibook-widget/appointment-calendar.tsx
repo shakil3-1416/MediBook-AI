@@ -887,7 +887,7 @@ export default function AppointmentCalendar({
 
                       <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                         <div>
-                          <dt className="text-slate-400">
+                          <dt className="text-slate-500">
                             Time
                           </dt>
 
@@ -911,7 +911,7 @@ export default function AppointmentCalendar({
                           )
                             ? (
                               <div>
-                                <dt className="text-slate-400">
+                                <dt className="text-slate-500">
                                   Hospital / chamber
                                 </dt>
 
@@ -934,7 +934,7 @@ export default function AppointmentCalendar({
                           )
                             ? (
                               <div>
-                                <dt className="text-slate-400">
+                                <dt className="text-slate-500">
                                   Location
                                 </dt>
 
@@ -955,7 +955,7 @@ export default function AppointmentCalendar({
                           appointment.confirmation_code
                             ? (
                               <div>
-                                <dt className="text-slate-400">
+                                <dt className="text-slate-500">
                                   Confirmation
                                 </dt>
 
@@ -971,7 +971,7 @@ export default function AppointmentCalendar({
                       </dl>
 
 
-                      <p className="mt-5 border-t border-slate-100 pt-4 text-xs leading-5 text-slate-400">
+                      <p className="mt-5 border-t border-slate-100 pt-4 text-xs leading-5 text-slate-500">
                         Need to make a change? Return to the conversation and tell MediBook what you want to do.
                       </p>
                     </article>

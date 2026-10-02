@@ -1,5 +1,7 @@
 "use client";
 
+import { readErrorMessage } from "@/lib/error-message";
+
 import {
   createContext,
   ReactNode,
@@ -128,12 +130,11 @@ export function HospitalWorkspaceProvider({
           }
 
           if (!response.ok) {
-            const body =
-              await response.text();
-
             throw new Error(
-              body ||
-              `Workspace request failed (${response.status}).`,
+              await readErrorMessage(
+                response,
+                "Could not load your hospital workspace.",
+              ),
             );
           }
 
@@ -235,12 +236,11 @@ export function HospitalWorkspaceProvider({
       }
 
       if (!response.ok) {
-        const body =
-          await response.text();
-
         throw new Error(
-          body ||
-          `Workspace switch failed (${response.status}).`,
+          await readErrorMessage(
+            response,
+            "Could not switch hospital workspace.",
+          ),
         );
       }
 

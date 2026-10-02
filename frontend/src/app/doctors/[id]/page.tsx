@@ -431,7 +431,7 @@ export default function DoctorProfilePage({
 
             <div className="h-fit min-w-[190px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
 
                 <WalletCards
                   size={15}
@@ -590,7 +590,7 @@ export default function DoctorProfilePage({
 
                               <Clock3
                                 size={15}
-                                className="text-slate-400 transition group-hover:text-emerald-600"
+                                className="text-slate-500 transition group-hover:text-emerald-600"
                               />
 
                               {
@@ -641,7 +641,7 @@ function Info({
   return (
     <div className="flex items-start gap-3">
 
-      <div className="mt-0.5 text-slate-400">
+      <div className="mt-0.5 text-slate-500">
 
         {icon}
 
@@ -650,7 +650,7 @@ function Info({
 
       <div>
 
-        <div className="text-xs font-semibold text-slate-400">
+        <div className="text-xs font-semibold text-slate-500">
 
           {title}
 

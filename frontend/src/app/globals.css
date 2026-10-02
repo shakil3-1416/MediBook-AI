@@ -5,6 +5,8 @@
   --foreground: #0f172a;
 }
 
+@layer base {
+
 * {
   box-sizing: border-box;
 }
@@ -77,6 +79,8 @@ textarea:focus-visible {
   textarea {
     font-size: 16px;
   }
+}
+
 }
 
 
@@ -271,7 +275,7 @@ textarea:focus-visible {
 
   --mb-text: #171321;
   --mb-text-secondary: #625d6f;
-  --mb-text-muted: #8c8798;
+  --mb-text-muted: #6b6577;
 
   --mb-border: #e9e5f0;
   --mb-border-strong: #dcd5e8;
@@ -329,6 +333,8 @@ textarea:focus-visible {
   --mb-content: 1180px;
 }
 
+
+@layer base {
 
 /* ----------------------------------------------------
    DOCUMENT
@@ -468,7 +474,7 @@ select {
 
 input::placeholder,
 textarea::placeholder {
-  color: #9a94a4;
+  color: #716b7e;
   opacity: 1;
 }
 
@@ -548,6 +554,8 @@ tbody tr {
       #b6a8cc
     )
     padding-box;
+}
+
 }
 
 

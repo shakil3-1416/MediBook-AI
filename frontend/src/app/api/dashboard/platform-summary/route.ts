@@ -3,8 +3,9 @@ import {
 } from "next/server";
 
 import {
-  cookies,
-} from "next/headers";
+  staffSessionToken,
+} from "@/lib/server/hospital-context";
+
 
 
 const BACKEND =
@@ -13,16 +14,9 @@ const BACKEND =
 
 
 export async function GET() {
-  const store =
-    await cookies();
 
   const token =
-    store.get(
-      "medibook_hospital_session",
-    )?.value ??
-    store.get(
-      "medibook_access_token",
-    )?.value;
+    await staffSessionToken();
 
 
   if (!token) {

@@ -4,6 +4,10 @@ import {
 } from "next/server";
 
 import {
+  activeHospitalSlug,
+} from "@/lib/server/hospital-context";
+
+import {
   cookies,
 } from "next/headers";
 
@@ -89,9 +93,10 @@ export async function GET(
   request: NextRequest,
 ) {
   const hospital =
-    request.nextUrl.searchParams
-      .get("hospital")
-      ?.trim();
+    await activeHospitalSlug(
+      request.nextUrl.searchParams
+        .get("hospital"),
+    );
 
   const doctorId =
     request.nextUrl.searchParams
@@ -148,9 +153,11 @@ export async function POST(
     };
 
   const hospital =
-    String(
-      body.hospital ?? "",
-    ).trim();
+    (await activeHospitalSlug(
+      String(
+        body.hospital ?? "",
+      ),
+    )) ?? "";
 
   const doctorId =
     String(
@@ -232,9 +239,11 @@ export async function PATCH(
     };
 
   const hospital =
-    String(
-      body.hospital ?? "",
-    ).trim();
+    (await activeHospitalSlug(
+      String(
+        body.hospital ?? "",
+      ),
+    )) ?? "";
 
   const doctorId =
     String(

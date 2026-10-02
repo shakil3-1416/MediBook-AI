@@ -110,8 +110,15 @@ export default function HospitalLoginPage() {
       }
 
 
+      const signedIn =
+        (await response.json().catch(() => null)) as {
+          user?: { role?: string };
+        } | null;
+
       router.replace(
-        "/hospital-dashboard",
+        signedIn?.user?.role === "platform_admin"
+          ? "/control"
+          : "/hospital-dashboard",
       );
 
       router.refresh();

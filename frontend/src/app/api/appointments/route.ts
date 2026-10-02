@@ -6,6 +6,10 @@ import {
   AUTH_COOKIE,
 } from "@/lib/auth-cookie";
 
+import {
+  patientHospitalSlug,
+} from "@/lib/server/hospital-context";
+
 
 export const runtime =
   "nodejs";
@@ -82,6 +86,10 @@ export async function GET(
           headers: {
             Authorization:
               `Bearer ${token}`,
+            "X-MediBook-Hospital-Slug":
+              await patientHospitalSlug(
+                incoming.searchParams.get("hospital"),
+              ),
           },
 
           cache:

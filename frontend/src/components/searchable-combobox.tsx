@@ -153,7 +153,7 @@ export function SearchableCombobox({
 
         <Search
           size={15}
-          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
         />
 
 
@@ -190,7 +190,7 @@ export function SearchableCombobox({
               }
             }
           }
-          className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-16 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-16 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500"
         />
 
 
@@ -203,7 +203,7 @@ export function SearchableCombobox({
               onClick={
                 () => choose("")
               }
-              className="rounded-md p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+              className="rounded-md p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-700"
             >
               <X size={14} />
             </button>
@@ -211,7 +211,7 @@ export function SearchableCombobox({
 
           <ChevronDown
             size={15}
-            className="ml-1 text-slate-400"
+            className="ml-1 text-slate-500"
           />
 
         </div>
