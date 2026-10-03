@@ -139,12 +139,10 @@ def is_medical_request(
 def has_urgent_symptom(
     message: str,
 ) -> bool:
-    text = normalize(message)
+    # One source of truth for emergencies: the safety router.
+    from app.services.llm.safety_router import safety_route
 
-    return any(
-        hint in text
-        for hint in URGENT_HINTS
-    )
+    return safety_route(message).route == "emergency"
 
 
 def looks_like_fake_tool_call(

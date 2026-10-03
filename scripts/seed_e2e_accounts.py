@@ -232,9 +232,16 @@ async def main(out_path: str) -> None:
         hospital = await session.scalar(select(Hospital).where(Hospital.slug == HOSPITAL_SLUG))
         if hospital is None:
             raise SystemExit(f"hospital {HOSPITAL_SLUG} not found")
-        other_hospital = await session.scalar(
-            select(Hospital).where(Hospital.slug.notin_([HOSPITAL_SLUG])).order_by(Hospital.slug).limit(1)
-        )
+        # The isolation test uses its own hospital, never a demo hospital.
+        isolation_slug = os.environ.get("E2E_ISOLATION_HOSPITAL_SLUG", "medibook-isolation-test")
+        other_hospital = await session.scalar(select(Hospital).where(Hospital.slug == isolation_slug))
+        if other_hospital is None:
+            other_hospital = await session.scalar(
+                select(Hospital)
+                .where(Hospital.slug.notin_([HOSPITAL_SLUG, "dhaka-demo-hospital"]))
+                .order_by(Hospital.slug)
+                .limit(1)
+            )
         member_role = await _hospital_user_role(session)
         await _upsert_user(session, "e2e-patient@example.com", roles.PATIENT, "E2E Patient", passwords["PATIENT"])
         admin = await _upsert_user(session, "e2e-hospital-admin@example.com", member_role, "E2E Hospital Admin", passwords["HOSPITAL"])

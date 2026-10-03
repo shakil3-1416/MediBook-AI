@@ -1,3 +1,4 @@
+import logging
 from collections.abc import AsyncIterator
 
 from fastapi import (
@@ -56,6 +57,7 @@ from app.services.conversation_service import (
 
 
 from app.chatbot.session import save_session
+from app.services.llm.safety_router import safety_route
 
 router = APIRouter()
 
@@ -63,6 +65,9 @@ router = APIRouter()
 # ============================================================
 # Shared application service
 # ============================================================
+
+
+logger = logging.getLogger("medibook.chat")
 
 async def process_chat_request(
     request: ChatRequest,
@@ -180,14 +185,19 @@ async def process_chat_request(
     # Existing grounded MediBook orchestration.
     # --------------------------------------------------
 
-    async with AsyncSessionFactory() as db_session:
-        grounded_directory = (
-            await grounded_doctor_directory_result(
-                db_session,
-                hospital_id=hospital.id,
-                message=request.message,
+    # Safety first: emergencies and clinical questions are answered
+    # deterministically, before any doctor search or model call.
+    safety = safety_route(request.message)
+    grounded_directory = None
+    if safety.matched is False:
+        async with AsyncSessionFactory() as db_session:
+            grounded_directory = (
+                await grounded_doctor_directory_result(
+                    db_session,
+                    hospital_id=hospital.id,
+                    message=request.message,
+                )
             )
-        )
 
     state = await load_session(
         conversation_id
@@ -195,7 +205,7 @@ async def process_chat_request(
 
     grounded_followup = None
 
-    if grounded_directory is None:
+    if grounded_directory is None and safety.matched is False:
         async with AsyncSessionFactory() as db_session:
             grounded_followup = (
                 await grounded_doctor_followup_result(
@@ -206,7 +216,9 @@ async def process_chat_request(
                 )
             )
 
-    if grounded_directory is not None:
+    if safety.matched:
+        response = safety.response or ""
+    elif grounded_directory is not None:
         response = grounded_directory[
             "response"
         ]
@@ -431,21 +443,22 @@ async def stream_chat(
             ):
                 yield event
 
-        except Exception as exc:
-
-            # Keep this log during development.
-            # It prevents streaming failures from becoming opaque.
-            print(
-                "CHAT STREAM ERROR:",
-                repr(exc),
-            )
-
+        except Exception:
+            # Log the real cause, then still give the patient something useful:
+            # the safety answer when it applies, otherwise a way forward.
+            logger.exception("chat stream failed")
+            fallback = safety_route(request.message)
             yield encode_event(
                 ChatStreamEvent(
                     type="error",
                     message=(
-                        "MediBook could not complete "
-                        "that request."
+                        fallback.response
+                        if fallback.matched and fallback.response
+                        else (
+                            "Sorry, I couldn’t answer that just now. Please try again in a moment, "
+                            "or ask me to find a doctor or show your appointments. "
+                            "If this is a medical emergency, call 999 now."
+                        )
                     ),
                 )
             )
