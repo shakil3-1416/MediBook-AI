@@ -1,3 +1,4 @@
+import re
 import json
 import time
 from collections.abc import AsyncIterator
@@ -12,6 +13,13 @@ from app.services.llm.types import (
     LLMUsage,
 )
 
+
+
+# Patients write in Bangla, Banglish or English; a reply in Hindi is never right.
+_WRONG_LANGUAGE = re.compile(
+    r"[\u0900-\u097F]|\b(aapko|aapka|aapki|kijiye|karni|karna|chahiye|kripya)\b",
+    re.IGNORECASE,
+)
 
 class LLMServiceError(RuntimeError):
     pass
@@ -45,7 +53,7 @@ class OllamaGateway:
         self.client = httpx.AsyncClient(
             timeout=httpx.Timeout(
                 connect=5.0,
-                read=120.0,
+                read=25.0,
                 write=30.0,
                 pool=5.0,
             ),
@@ -134,6 +142,10 @@ class OllamaGateway:
             .get("message", {})
             .get("content", "")
         )
+        if _WRONG_LANGUAGE.search(content or ""):
+            raise LLMServiceError(
+                "The model replied in an unsupported language."
+            )
 
         usage = self._usage_from_payload(
             payload

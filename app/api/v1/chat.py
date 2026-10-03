@@ -58,6 +58,7 @@ from app.services.conversation_service import (
 
 from app.chatbot.session import save_session
 from app.services.llm.safety_router import safety_route
+from app.chatbot.direct_answers import direct_answer
 
 router = APIRouter()
 
@@ -190,6 +191,15 @@ async def process_chat_request(
     safety = safety_route(request.message)
     grounded_directory = None
     if safety.matched is False:
+        # Direct answers from this hospital's data: free times, booking by
+        # specialty, fees, hospital information and off-topic questions.
+        async with AsyncSessionFactory() as db_session:
+            grounded_directory = await direct_answer(
+                db_session,
+                hospital=hospital,
+                message=request.message,
+            )
+    if safety.matched is False and grounded_directory is None:
         async with AsyncSessionFactory() as db_session:
             grounded_directory = (
                 await grounded_doctor_directory_result(

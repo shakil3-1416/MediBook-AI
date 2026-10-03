@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -32,6 +33,10 @@ MESSAGES = [
     "what's the weather today?",
     "আমার বুকে ব্যথা করছে",
     "doctor dekhate chai",
+    "I need a dermatologist",
+    "how much does a skin doctor cost",
+    "any ENT slots available on monday",
+    "I want to book an appointment",
 ]
 
 
@@ -71,9 +76,29 @@ def llm_status() -> str:
         return f"NOT reachable at {base}; answers that need the language model will fail"
 
 
-def verdict(status: int, reply: str) -> str:
+WRONG_LANGUAGE = re.compile(r"[\u0900-\u097F]|\b(aapko|aapka|aapki|kijiye|karni|karna|chahiye|kripya)\b", re.IGNORECASE)
+DOCTOR_NAME = re.compile(r"\bDr\.? [A-Z][a-z]+(?: [A-Z][a-z]+)*(?: \d+)?")
+
+
+def hospital_doctor_names(base: str, slug: str) -> set[str]:
+    try:
+        with urllib.request.urlopen(f"{base}/api/v1/hospital-public/{slug}/doctors", timeout=15) as response:
+            data = json.loads(response.read())
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError):
+        return set()
+    doctors = data if isinstance(data, list) else (data.get("doctors") or data.get("items") or [])
+    return {str(doctor.get("full_name") or doctor.get("name") or "").strip() for doctor in doctors if isinstance(doctor, dict)}
+
+
+def verdict(status: int, reply: str, names: set[str] | None = None) -> str:
     if status != 200:
         return f"HTTP {status}"
+    if WRONG_LANGUAGE.search(reply):
+        return "LANGUAGE"
+    if names:
+        listed = {match.group(0).strip() for match in DOCTOR_NAME.finditer(reply)}
+        if any(name not in names for name in listed):
+            return "OTHER-HOSP"
     if reply.strip() == "":
         return "EMPTY"
     lowered = reply.lower()
@@ -99,17 +124,22 @@ def main() -> int:
         print(f"could not sign in as the e2e patient (HTTP {status})")
         return 1
     headers = {"Authorization": f"Bearer {token}", "X-MediBook-Hospital-Slug": slug}
+    names = hospital_doctor_names(base, slug)
+    print(f"doctors at {slug}: {len(names)}")
+    messages = list(MESSAGES)
+    if names:
+        messages.append(sorted(names)[0])
     counts: dict[str, int] = {}
-    for message in MESSAGES:
+    for message in messages:
         started = time.monotonic()
         status, data = post(f"{base}/api/v1/chat", {"message": message}, headers, 45)
         took = time.monotonic() - started
         reply = data.get("response", "") if isinstance(data, dict) else str(data)
-        result = verdict(status, str(reply))
+        result = verdict(status, str(reply), names)
         counts[result] = counts.get(result, 0) + 1
         one_line = " ".join(str(reply).split())
         slow = " SLOW" if took > 10 else ""
-        print(f"{result:<8}{slow:<5} {took:5.1f}s  {message[:44]:<44} -> {one_line[:160]}")
+        print(f"{result:<10}{slow:<5} {took:5.1f}s  {message[:44]:<44} -> {one_line[:160]}")
     print("summary: " + ", ".join(f"{key} {value}" for key, value in sorted(counts.items())))
     return 0
 

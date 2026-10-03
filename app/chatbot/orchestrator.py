@@ -6,6 +6,8 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 
+from app.models.hospital import HospitalDoctor
+
 from app.chatbot.time_utils import resolve_booking_time
 from app.services.llm.conversation import (
     generate_safe_response,
@@ -637,6 +639,7 @@ async def find_doctor_from_message(
 
 async def grounded_doctor_directory_search(
     message: str,
+    hospital_id: UUID | None = None,
 ) -> str | None:
     """
     Handle high-confidence doctor discovery using the real
@@ -689,6 +692,17 @@ async def grounded_doctor_directory_search(
             location=location,
             gender=gender,
         )
+        # Only this hospital's doctors, never the whole network.
+        if hospital_id is not None:
+            allowed = set(
+                await session.scalars(
+                    select(HospitalDoctor.doctor_id).where(
+                        HospitalDoctor.hospital_id == hospital_id,
+                        HospitalDoctor.is_active.is_(True),
+                    )
+                )
+            )
+            doctors = [doctor for doctor in doctors if doctor.id in allowed]
 
     if not doctors:
 
@@ -2429,7 +2443,8 @@ async def handle_conversation(
 
     grounded_response = (
         await grounded_doctor_directory_search(
-            message
+            message,
+            hospital_id=hospital_id,
         )
     )
 

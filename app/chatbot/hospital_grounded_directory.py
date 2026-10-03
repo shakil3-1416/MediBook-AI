@@ -19,6 +19,13 @@ SEARCH_VERBS = (
     "recommend",
     "looking for",
     "look for",
+    "need",
+    "want",
+    "consult",
+    "dekhate",
+    "dekhabo",
+    "chai",
+    "lagbe",
 )
 
 
@@ -29,6 +36,23 @@ DOCTOR_WORDS = (
     "specialists",
     "physician",
     "physicians",
+    "cardiologist",
+    "dermatologist",
+    "neurologist",
+    "gynecologist",
+    "gynaecologist",
+    "pediatrician",
+    "paediatrician",
+    "orthopedic",
+    "orthopaedic",
+    "surgeon",
+    "oncologist",
+    "pulmonologist",
+    "ophthalmologist",
+    "urologist",
+    "psychiatrist",
+    "gastroenterologist",
+    "daktar",
 )
 
 
