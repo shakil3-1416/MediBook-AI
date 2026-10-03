@@ -93,7 +93,7 @@ export default function ControlOperationsPage() {
       <div className="mx-auto max-w-7xl">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-sm font-semibold text-purple-600">
+            <div className="text-sm font-semibold text-brand-600">
               MediBook Control Center
             </div>
 

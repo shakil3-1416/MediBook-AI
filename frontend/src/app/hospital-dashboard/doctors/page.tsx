@@ -734,7 +734,7 @@ export default function HospitalDoctorsPage() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <div className="flex items-center gap-2 text-sm font-semibold text-purple-600">
+            <div className="flex items-center gap-2 text-sm font-semibold text-brand-600">
               <Stethoscope size={16} />
 
               Hospital Operations
@@ -774,7 +774,7 @@ export default function HospitalDoctorsPage() {
                 onClick={
                   openCreate
                 }
-                className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white"
+                className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white"
               >
                 <Plus size={16} />
                 Add doctor
@@ -790,7 +790,7 @@ export default function HospitalDoctorsPage() {
         ) : null}
 
         {success ? (
-          <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+          <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm text-brand-700">
             {success}
           </div>
         ) : null}
@@ -813,7 +813,7 @@ export default function HospitalDoctorsPage() {
                   )
               }
               placeholder="Search doctors"
-              className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-purple-400"
+              className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-brand-400"
             />
           </div>
         </div>
@@ -902,7 +902,7 @@ export default function HospitalDoctorsPage() {
                             className={[
                               "rounded-full px-2.5 py-1 text-xs font-semibold",
                               active
-                                ? "bg-emerald-50 text-emerald-700"
+                                ? "bg-brand-50 text-brand-700"
                                 : "bg-slate-100 text-slate-600",
                             ].join(
                               " ",
@@ -950,7 +950,7 @@ export default function HospitalDoctorsPage() {
                                 "rounded-xl px-3 py-2 text-sm font-medium",
                                 active
                                   ? "border border-rose-200 text-rose-700"
-                                  : "bg-emerald-600 text-white",
+                                  : "bg-brand-600 text-white",
                               ].join(
                                 " ",
                               )}
@@ -1262,7 +1262,7 @@ export default function HospitalDoctorsPage() {
                   disabled={
                     busy
                   }
-                  className="rounded-xl bg-purple-600 px-5 py-2 text-sm font-medium text-white disabled:opacity-50"
+                  className="rounded-xl bg-brand-600 px-5 py-2 text-sm font-medium text-white disabled:opacity-50"
                 >
                   {busy
                     ? "Saving..."

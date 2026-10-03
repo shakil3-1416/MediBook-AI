@@ -38,7 +38,7 @@ export function MediBookFooter() {
 
             <Stethoscope
               size={18}
-              className="text-emerald-600"
+              className="text-brand-600"
             />
 
             MediBook

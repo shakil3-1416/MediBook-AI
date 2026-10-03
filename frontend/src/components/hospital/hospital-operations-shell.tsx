@@ -134,7 +134,7 @@ function SidebarContent({
   return (
     <>
       <div className="border-b border-slate-100 px-5 py-5">
-        <div className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-600">
+        <div className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600">
           MediBook
         </div>
 
@@ -161,7 +161,7 @@ function SidebarContent({
                 );
               }
             }
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-purple-400 focus:ring-2 focus:ring-purple-100 disabled:opacity-60"
+            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100 disabled:opacity-60"
           >
             {workspaces.map(
               (
@@ -191,7 +191,7 @@ function SidebarContent({
             </span>
 
             {switching ? (
-              <span className="flex items-center gap-1 text-xs text-purple-600">
+              <span className="flex items-center gap-1 text-xs text-brand-600">
                 <RefreshCw
                   size={12}
                   className="animate-spin"
@@ -233,7 +233,7 @@ function SidebarContent({
                 className={[
                   "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
                   active
-                    ? "bg-purple-50 text-purple-800"
+                    ? "bg-brand-50 text-brand-800"
                     : "text-slate-600 hover:bg-slate-50 hover:text-slate-950",
                 ].join(
                   " ",
@@ -259,7 +259,7 @@ function SidebarContent({
           <div className="flex items-center gap-2">
             <Activity
               size={14}
-              className="text-emerald-600"
+              className="text-brand-600"
             />
 
             <span className="truncate text-xs font-semibold text-slate-700">
@@ -276,7 +276,7 @@ function SidebarContent({
               }
             </span>
 
-            <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+            <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-700">
               {
                 activeWorkspace.status
               }
@@ -316,7 +316,7 @@ function HospitalOperationsShellInner({
           <div className="flex items-center gap-3 text-sm font-medium text-slate-700">
             <RefreshCw
               size={18}
-              className="animate-spin text-purple-600"
+              className="animate-spin text-brand-600"
             />
             Loading hospital workspace...
           </div>
@@ -345,7 +345,7 @@ function HospitalOperationsShellInner({
                 void reload();
               }
             }
-            className="mt-5 rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+            className="mt-5 rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
           >
             Retry
           </button>
@@ -456,7 +456,7 @@ function HospitalOperationsShellInner({
               </div>
             </div>
 
-            <div className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold capitalize text-emerald-700">
+            <div className="rounded-full bg-brand-50 px-3 py-1.5 text-xs font-semibold capitalize text-brand-700">
               {
                 activeWorkspace.status
               }

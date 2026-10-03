@@ -28,7 +28,7 @@ export async function GET(
   button.textContent = "Book appointment";
   button.setAttribute("aria-expanded", "false");
   button.setAttribute("aria-label", "Open MediBook appointment assistant");
-  button.style.cssText = "position:fixed;right:20px;bottom:20px;z-index:2147483647;border:0;border-radius:999px;padding:14px 20px;background:linear-gradient(135deg,#7430df,#8d4cf6);color:#fff;font:650 14px Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 14px 36px rgba(80,34,152,.28)";
+  button.style.cssText = "position:fixed;right:20px;bottom:20px;z-index:2147483647;border:0;border-radius:999px;padding:14px 20px;background:linear-gradient(135deg,#3D7A5A,#5B9A77);color:#fff;font:650 14px Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 14px 36px rgba(80,34,152,.28)";
 
   let open = false;
 

@@ -475,7 +475,7 @@ export default function AssistantPage() {
 
           <div className="mx-auto flex h-full max-w-xl flex-col items-center justify-center text-center">
 
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-600 text-white">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-white">
               <Bot
                 size={25}
               />
@@ -506,7 +506,7 @@ export default function AssistantPage() {
                         action,
                       )
                     }
-                    className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm transition hover:border-emerald-300 hover:bg-emerald-50/30 disabled:opacity-50"
+                    className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm transition hover:border-brand-300 hover:bg-brand-50/30 disabled:opacity-50"
                   >
                     {action}
                   </button>
@@ -540,7 +540,7 @@ export default function AssistantPage() {
                   {message.role ===
                     "assistant" && (
 
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-600 text-white">
                       <Bot
                         size={15}
                       />
@@ -612,7 +612,7 @@ export default function AssistantPage() {
 
               <div className="flex gap-3">
 
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-600 text-white">
                   <Bot
                     size={15}
                   />
@@ -647,7 +647,7 @@ export default function AssistantPage() {
                       }
 
                       {isStreaming && (
-                        <span className="ml-1 inline-block h-4 w-1 animate-pulse rounded bg-emerald-500 align-middle" />
+                        <span className="ml-1 inline-block h-4 w-1 animate-pulse rounded bg-brand-500 align-middle" />
                       )}
                     </div>
 
@@ -716,7 +716,7 @@ export default function AssistantPage() {
         className="border-t border-slate-200 bg-white p-4"
       >
 
-        <div className="mx-auto flex max-w-3xl items-end gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 focus-within:border-emerald-400">
+        <div className="mx-auto flex max-w-3xl items-end gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 focus-within:border-brand-400">
 
           <textarea
             value={
@@ -787,7 +787,7 @@ export default function AssistantPage() {
                 !input.trim()
               }
 
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-white disabled:opacity-40"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white disabled:opacity-40"
             >
               <ArrowUp
                 size={17}

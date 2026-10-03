@@ -199,7 +199,7 @@ export default function HospitalSettingsPage() {
   return (
     <main className="p-5 md:p-8">
       <div className="mx-auto max-w-5xl">
-        <div className="flex items-center gap-2 text-sm font-semibold text-purple-600">
+        <div className="flex items-center gap-2 text-sm font-semibold text-brand-600">
           <Settings size={16} />
           Configuration
         </div>
@@ -219,7 +219,7 @@ export default function HospitalSettingsPage() {
         ) : null}
 
         {success ? (
-          <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+          <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm text-brand-700">
             {success}
           </div>
         ) : null}
@@ -244,7 +244,7 @@ export default function HospitalSettingsPage() {
                     )
                 }
                 spellCheck={false}
-                className="min-h-[420px] w-full rounded-xl border border-slate-200 bg-slate-950 p-4 font-mono text-xs leading-6 text-slate-100 outline-none focus:border-purple-400"
+                className="min-h-[420px] w-full rounded-xl border border-slate-200 bg-slate-950 p-4 font-mono text-xs leading-6 text-slate-100 outline-none focus:border-brand-400"
               />
 
               <div className="mt-4 flex items-center justify-between gap-4">
@@ -266,7 +266,7 @@ export default function HospitalSettingsPage() {
                     () =>
                       void save()
                   }
-                  className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-40"
+                  className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Save size={16} />
 

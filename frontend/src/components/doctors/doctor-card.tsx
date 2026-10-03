@@ -21,7 +21,7 @@ export function DoctorCard({
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-5">
       <div className="flex gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
           <Stethoscope
             size={21}
           />
@@ -34,7 +34,7 @@ export function DoctorCard({
                 {doctor.full_name}
               </h3>
 
-              <p className="mt-1 text-sm font-semibold text-emerald-700">
+              <p className="mt-1 text-sm font-semibold text-brand-700">
                 {
                   doctor.specialty
                     .name

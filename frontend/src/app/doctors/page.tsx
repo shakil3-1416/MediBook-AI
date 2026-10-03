@@ -421,7 +421,7 @@ export default function DoctorsPage() {
 
         <div className="max-w-3xl">
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-xs font-semibold text-emerald-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/10 px-3 py-1.5 text-xs font-semibold text-brand-300">
 
             <Stethoscope
               size={14}
@@ -467,7 +467,7 @@ export default function DoctorsPage() {
                   )
               }
               placeholder="Search doctor, hospital, specialty or location"
-              className="w-full rounded-2xl border border-white/10 bg-white py-4 pl-12 pr-4 text-sm text-slate-950 outline-none transition focus:ring-2 focus:ring-emerald-400"
+              className="w-full rounded-2xl border border-white/10 bg-white py-4 pl-12 pr-4 text-sm text-slate-950 outline-none transition focus:ring-2 focus:ring-brand-400"
             />
 
           </div>
@@ -485,7 +485,7 @@ export default function DoctorsPage() {
 
             <SlidersHorizontal
               size={17}
-              className="text-emerald-600"
+              className="text-brand-600"
             />
 
             <h2 className="font-bold text-slate-950">
@@ -573,7 +573,7 @@ export default function DoctorsPage() {
                       event.target.value,
                     )
                 }
-                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
               >
 
                 <option value="">
@@ -607,7 +607,7 @@ export default function DoctorsPage() {
                       event.target.value,
                     )
                 }
-                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
               >
 
                 <option value="">
@@ -783,7 +783,7 @@ export default function DoctorsPage() {
 
                     <div className="flex items-start gap-4">
 
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
 
                         <UserRound
                           size={21}
@@ -798,7 +798,7 @@ export default function DoctorsPage() {
                           {doctor.full_name}
                         </h3>
 
-                        <p className="mt-1 text-sm font-semibold text-emerald-700">
+                        <p className="mt-1 text-sm font-semibold text-brand-700">
                           {doctor.specialty.name}
                         </p>
 
@@ -888,7 +888,7 @@ export default function DoctorsPage() {
                         href={
                           `/doctors/${doctor.id}`
                         }
-                        className="mt-4 flex w-full items-center justify-center rounded-xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                        className="mt-4 flex w-full items-center justify-center rounded-xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
                       >
                         View doctor
                       </Link>

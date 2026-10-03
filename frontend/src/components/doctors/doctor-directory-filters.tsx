@@ -133,7 +133,7 @@ export function DoctorDirectoryFilters() {
             )
           }
           placeholder="Doctor name"
-          className="h-11 w-full rounded-xl border border-slate-200 pl-9 pr-3 text-sm outline-none transition focus:border-emerald-500"
+          className="h-11 w-full rounded-xl border border-slate-200 pl-9 pr-3 text-sm outline-none transition focus:border-brand-500"
         />
       </label>
 
@@ -147,7 +147,7 @@ export function DoctorDirectoryFilters() {
           )
         }
         placeholder="Specialty"
-        className="h-11 rounded-xl border border-slate-200 px-3 text-sm outline-none transition focus:border-emerald-500"
+        className="h-11 rounded-xl border border-slate-200 px-3 text-sm outline-none transition focus:border-brand-500"
       />
 
       <input
@@ -160,7 +160,7 @@ export function DoctorDirectoryFilters() {
           )
         }
         placeholder="Location"
-        className="h-11 rounded-xl border border-slate-200 px-3 text-sm outline-none transition focus:border-emerald-500"
+        className="h-11 rounded-xl border border-slate-200 px-3 text-sm outline-none transition focus:border-brand-500"
       />
 
       <select
@@ -172,7 +172,7 @@ export function DoctorDirectoryFilters() {
             event.target.value,
           )
         }
-        className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-emerald-500"
+        className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-brand-500"
       >
         <option value="">
           Any gender

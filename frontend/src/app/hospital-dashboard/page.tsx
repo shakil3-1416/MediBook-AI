@@ -91,7 +91,7 @@ function StatusBadge({
     normalized === "confirmed" ||
     normalized === "connected" ||
     normalized === "active"
-      ? "bg-emerald-50 text-emerald-700 ring-emerald-600/20"
+      ? "bg-brand-50 text-brand-700 ring-brand-600/20"
       : normalized === "cancelled" ||
         normalized === "error" ||
         normalized === "failed"
@@ -268,7 +268,7 @@ export default function HospitalDashboardPage() {
             </p>
 
             <button
-              className="mt-5 rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white"
+              className="mt-5 rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white"
               onClick={
                 () => {
                   void loadDashboard();
@@ -289,7 +289,7 @@ export default function HospitalDashboardPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div>
-            <div className="text-sm font-semibold text-purple-600">
+            <div className="text-sm font-semibold text-brand-600">
               MediBook Hospital Operations
             </div>
 
@@ -618,12 +618,12 @@ export default function HospitalDashboardPage() {
         </section>
 
 
-        <section className="rounded-2xl border border-purple-100 bg-purple-50/60 p-5">
-          <div className="text-sm font-semibold text-purple-900">
+        <section className="rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
+          <div className="text-sm font-semibold text-brand-900">
             Hospital tenant
           </div>
 
-          <div className="mt-2 grid gap-2 text-sm text-purple-800 sm:grid-cols-3">
+          <div className="mt-2 grid gap-2 text-sm text-brand-800 sm:grid-cols-3">
             <div>
               Slug:{" "}
               <span className="font-medium">

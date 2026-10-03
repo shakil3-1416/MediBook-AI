@@ -236,11 +236,11 @@ export default function ForgotPasswordPage() {
 
 
   return (
-    <main className="min-h-screen bg-purple-50/40 px-5 py-12">
+    <main className="min-h-screen bg-brand-50/40 px-5 py-12">
 
-      <div className="mx-auto max-w-md rounded-3xl border border-purple-100 bg-white p-7 shadow-sm">
+      <div className="mx-auto max-w-md rounded-3xl border border-brand-100 bg-white p-7 shadow-sm">
 
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-700 font-bold text-white">
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-700 font-bold text-white">
           M
         </div>
 
@@ -268,13 +268,13 @@ export default function ForgotPasswordPage() {
                     event.target.value,
                   )
                 }
-                className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 outline-none focus:border-purple-400"
+                className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 outline-none focus:border-brand-400"
               />
             </label>
 
             <button
               disabled={busy}
-              className="w-full rounded-xl bg-purple-700 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
+              className="w-full rounded-xl bg-brand-700 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
             >
               {busy
                 ? "Sending..."
@@ -303,7 +303,7 @@ export default function ForgotPasswordPage() {
                     ),
                   )
                 }
-                className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 tracking-[0.35em] outline-none focus:border-purple-400"
+                className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 tracking-[0.35em] outline-none focus:border-brand-400"
               />
             </label>
 
@@ -319,13 +319,13 @@ export default function ForgotPasswordPage() {
                     event.target.value,
                   )
                 }
-                className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 outline-none focus:border-purple-400"
+                className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 outline-none focus:border-brand-400"
               />
             </label>
 
             <button
               disabled={busy}
-              className="w-full rounded-xl bg-purple-700 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
+              className="w-full rounded-xl bg-brand-700 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
             >
               Reset password
             </button>
@@ -334,7 +334,7 @@ export default function ForgotPasswordPage() {
               type="button"
               onClick={resend}
               disabled={busy}
-              className="w-full px-4 py-2 text-sm font-medium text-purple-700 disabled:opacity-50"
+              className="w-full px-4 py-2 text-sm font-medium text-brand-700 disabled:opacity-50"
             >
               Resend code
             </button>
@@ -344,14 +344,14 @@ export default function ForgotPasswordPage() {
         {step === "done" && (
           <a
             href="/login"
-            className="mt-7 block rounded-xl bg-purple-700 px-4 py-3 text-center text-sm font-semibold text-white"
+            className="mt-7 block rounded-xl bg-brand-700 px-4 py-3 text-center text-sm font-semibold text-white"
           >
             Sign in
           </a>
         )}
 
         {message && (
-          <p className="mt-5 rounded-xl bg-purple-50 px-4 py-3 text-sm text-purple-800">
+          <p className="mt-5 rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-800">
             {message}
           </p>
         )}

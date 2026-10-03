@@ -957,14 +957,14 @@ export function MediBookWidget({
       )}
 
       <aside
-        className={`absolute inset-y-0 left-0 z-40 flex w-[285px] flex-col border-r border-purple-100 bg-purple-50/50 transition-transform md:relative md:translate-x-0 ${
+        className={`absolute inset-y-0 left-0 z-40 flex w-[285px] flex-col border-r border-brand-100 bg-brand-50/50 transition-transform md:relative md:translate-x-0 ${
           sidebarOpen
             ? "translate-x-0"
             : "-translate-x-full"
         }`}
       >
         <div className="flex h-16 items-center gap-3 px-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-700 font-bold text-white">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-700 font-bold text-white">
             M
           </div>
 
@@ -982,7 +982,7 @@ export function MediBookWidget({
         <div className="px-3">
           <button
             onClick={newChat}
-            className="flex w-full items-center gap-3 rounded-xl border border-purple-200 bg-white px-3 py-2.5 text-left text-sm font-medium hover:bg-purple-50"
+            className="flex w-full items-center gap-3 rounded-xl border border-brand-200 bg-white px-3 py-2.5 text-left text-sm font-medium hover:bg-brand-50"
           >
             <span className="text-lg">
               +
@@ -994,8 +994,8 @@ export function MediBookWidget({
             onClick={openCalendar}
             className={`mt-2 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm ${
               view === "calendar"
-                ? "bg-purple-100 font-medium text-purple-800"
-                : "text-slate-700 hover:bg-purple-50"
+                ? "bg-brand-100 font-medium text-brand-800"
+                : "text-slate-700 hover:bg-brand-50"
             }`}
           >
             <span>▣</span>
@@ -1021,8 +1021,8 @@ export function MediBookWidget({
                   conversation.id ===
                     conversationId &&
                   view === "chat"
-                    ? "bg-purple-100 text-purple-900"
-                    : "text-slate-600 hover:bg-purple-50"
+                    ? "bg-brand-100 text-brand-900"
+                    : "text-slate-600 hover:bg-brand-50"
                 }`}
               >
                 {conversation.title ||
@@ -1032,7 +1032,7 @@ export function MediBookWidget({
           )}
         </div>
 
-        <div className="relative border-t border-purple-100 p-3">
+        <div className="relative border-t border-brand-100 p-3">
           {user ? (
             <>
               <button
@@ -1041,7 +1041,7 @@ export function MediBookWidget({
                     (open) => !open,
                   )
                 }
-                className="flex w-full items-center gap-3 rounded-xl p-2 text-left hover:bg-purple-100"
+                className="flex w-full items-center gap-3 rounded-xl p-2 text-left hover:bg-brand-100"
               >
                 {user.profile_image_url ? (
                   <img
@@ -1050,7 +1050,7 @@ export function MediBookWidget({
                     className="h-9 w-9 shrink-0 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-700 text-sm font-semibold text-white">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-700 text-sm font-semibold text-white">
                     {initial || "P"}
                   </div>
                 )}
@@ -1071,28 +1071,28 @@ export function MediBookWidget({
               </button>
 
               {profileOpen && (
-                <div className="absolute bottom-[68px] left-3 right-3 rounded-2xl border border-purple-100 bg-white p-1 shadow-xl">
+                <div className="absolute bottom-[68px] left-3 right-3 rounded-2xl border border-brand-100 bg-white p-1 shadow-xl">
                   <button
                     onClick={() =>
                       router.push(
                         `/profile?returnTo=/widget/${hospitalSlug}`,
                       )
                     }
-                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm hover:bg-purple-50"
+                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm hover:bg-brand-50"
                   >
                     My profile
                   </button>
 
                   <button
                     onClick={() => setAppointmentCalendarOpen(true)}
-                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm hover:bg-purple-50"
+                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm hover:bg-brand-50"
                   >
                     My appointments
                   </button>
 
                   <button
                     onClick={logout}
-                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm font-medium text-purple-700 hover:bg-purple-50"
+                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm font-medium text-brand-700 hover:bg-brand-50"
                   >
                     Sign out
                   </button>
@@ -1102,7 +1102,7 @@ export function MediBookWidget({
           ) : (
             <button
               onClick={login}
-              className="w-full rounded-xl bg-purple-700 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-800"
+              className="w-full rounded-xl bg-brand-700 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-800"
             >
               Sign in
             </button>
@@ -1111,13 +1111,13 @@ export function MediBookWidget({
       </aside>
 
       <main className="flex min-w-0 flex-1 flex-col bg-white">
-        <header className="flex h-16 shrink-0 items-center justify-between border-b border-purple-100 px-4 md:px-6">
+        <header className="flex h-16 shrink-0 items-center justify-between border-b border-brand-100 px-4 md:px-6">
           <div className="flex items-center gap-3">
             <button
               onClick={() =>
                 setSidebarOpen(true)
               }
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-100 md:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-brand-100 md:hidden"
             >
               ☰
             </button>
@@ -1133,7 +1133,7 @@ export function MediBookWidget({
             </div>
           </div>
 
-          <div className="rounded-full bg-purple-50 px-3 py-1.5 text-[11px] font-medium text-purple-700">
+          <div className="rounded-full bg-brand-50 px-3 py-1.5 text-[11px] font-medium text-brand-700">
             {hospitalSlug}
           </div>
         </header>
@@ -1146,7 +1146,7 @@ export function MediBookWidget({
                 {messages.length === 0 ? (
                   <div className="flex flex-1 flex-col items-center justify-center py-14 text-center">
 
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-700 text-xl font-bold text-white shadow-lg shadow-purple-200">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-700 text-xl font-bold text-white shadow-lg shadow-brand-200">
                       M
                     </div>
 
@@ -1163,17 +1163,17 @@ export function MediBookWidget({
                     <div className="mt-8 grid w-full max-w-2xl gap-3 sm:grid-cols-2">
                       <div className="mt-8 flex flex-col items-center">
                         <div className="relative flex h-16 w-16 items-center justify-center">
-                          <div className="absolute inset-0 rounded-2xl bg-purple-500/10 blur-xl" />
+                          <div className="absolute inset-0 rounded-2xl bg-brand-500/10 blur-xl" />
 
-                          <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-violet-500 text-lg font-semibold text-white shadow-lg shadow-purple-500/20">
+                          <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-brand-500 text-lg font-semibold text-white shadow-lg shadow-brand-500/20">
                             M
                           </div>
                         </div>
 
                         <div className="mt-5 flex items-center gap-2 text-xs font-medium text-slate-400">
                           <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-50" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
                           </span>
 
                           Connected to this hospital
@@ -1204,7 +1204,7 @@ export function MediBookWidget({
                           >
                             {message.role ===
                               "assistant" && (
-                              <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-purple-700 text-xs font-bold text-white">
+                              <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-700 text-xs font-bold text-white">
                                 M
                               </div>
                             )}
@@ -1214,7 +1214,7 @@ export function MediBookWidget({
                                 className={
                                   message.role ===
                                   "user"
-                                    ? "rounded-2xl rounded-br-md bg-purple-700 px-4 py-3 text-sm leading-7 text-white"
+                                    ? "rounded-2xl rounded-br-md bg-brand-700 px-4 py-3 text-sm leading-7 text-white"
                                     : "whitespace-pre-wrap break-words px-1 py-1 text-sm leading-7 text-slate-800"
                                 }
                               >
@@ -1239,7 +1239,7 @@ export function MediBookWidget({
                                       message,
                                     )
                                   }
-                                  className="mt-1 px-2 text-[11px] text-slate-400 hover:text-purple-700"
+                                  className="mt-1 px-2 text-[11px] text-slate-400 hover:text-brand-700"
                                 >
                                   Edit
                                   {message.edited_at
@@ -1264,7 +1264,7 @@ export function MediBookWidget({
                 onSubmit={send}
                 className="mx-auto max-w-3xl"
               >
-                <div className="rounded-[24px] border border-purple-200 bg-white p-2 shadow-[0_8px_35px_rgba(124,58,237,0.10)] focus-within:border-purple-400 focus-within:ring-4 focus-within:ring-purple-100">
+                <div className="rounded-[24px] border border-brand-200 bg-white p-2 shadow-[0_8px_35px_rgba(124,58,237,0.10)] focus-within:border-brand-400 focus-within:ring-4 focus-within:ring-brand-100">
                   <textarea
                     value={input}
                     onChange={(event) =>
@@ -1297,7 +1297,7 @@ export function MediBookWidget({
                         busy ||
                         !input.trim()
                       }
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-700 font-semibold text-white hover:bg-purple-800 disabled:opacity-30"
+                      className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-700 font-semibold text-white hover:bg-brand-800 disabled:opacity-30"
                     >
                       {busy ? "…" : "↑"}
                     </button>
@@ -1307,12 +1307,12 @@ export function MediBookWidget({
             </div>
           </>
         ) : (
-          <section className="flex-1 overflow-y-auto bg-purple-50/30 p-5 md:p-8">
+          <section className="flex-1 overflow-y-auto bg-brand-50/30 p-5 md:p-8">
             <div className="mx-auto max-w-5xl">
 
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-purple-600">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">
                     Appointment calendar
                   </p>
 
@@ -1329,7 +1329,7 @@ export function MediBookWidget({
                   onClick={() =>
                     setView("chat")
                   }
-                  className="rounded-xl border border-purple-200 bg-white px-4 py-2.5 text-sm font-medium text-purple-700 hover:bg-purple-50"
+                  className="rounded-xl border border-brand-200 bg-white px-4 py-2.5 text-sm font-medium text-brand-700 hover:bg-brand-50"
                 >
                   Back to chat
                 </button>
@@ -1337,7 +1337,7 @@ export function MediBookWidget({
 
               <div className="mt-8 space-y-4">
                 {appointments.length === 0 ? (
-                  <div className="rounded-3xl border border-dashed border-purple-200 bg-white px-6 py-16 text-center">
+                  <div className="rounded-3xl border border-dashed border-brand-200 bg-white px-6 py-16 text-center">
                     <div className="text-lg font-medium">
                       No appointments yet
                     </div>
@@ -1350,7 +1350,7 @@ export function MediBookWidget({
                       onClick={() =>
                         setView("chat")
                       }
-                      className="mt-5 rounded-xl bg-purple-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-purple-800"
+                      className="mt-5 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-800"
                     >
                       Start chatting
                     </button>
@@ -1388,12 +1388,12 @@ export function MediBookWidget({
                             appointment.id ??
                             index
                           }
-                          className="rounded-3xl border border-purple-100 bg-white p-6 shadow-sm"
+                          className="rounded-3xl border border-brand-100 bg-white p-6 shadow-sm"
                         >
                           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
 
                             <div className="flex items-start gap-4">
-                              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-100 font-semibold text-purple-700">
+                              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 font-semibold text-brand-700">
                                 Dr
                               </div>
 
@@ -1423,7 +1423,7 @@ export function MediBookWidget({
                                   className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-medium ${
                                     cancelled
                                       ? "bg-slate-100 text-slate-500"
-                                      : "bg-purple-50 text-purple-700"
+                                      : "bg-brand-50 text-brand-700"
                                   }`}
                                 >
                                   {appointment.status ??

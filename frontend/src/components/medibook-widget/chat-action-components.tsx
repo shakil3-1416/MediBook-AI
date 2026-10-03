@@ -86,9 +86,9 @@ function DoctorCard({
       : data.professional_interests;
 
   return (
-    <article className="medibook-message mt-3 overflow-hidden rounded-2xl border border-purple-100 bg-white shadow-sm">
+    <article className="medibook-message mt-3 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm">
       <div className="flex gap-4 p-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-purple-100 font-semibold text-purple-700">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-brand-100 font-semibold text-brand-700">
           {data.profile_image_url ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -115,7 +115,7 @@ function DoctorCard({
           </h3>
 
           {data.specialty ? (
-            <p className="mt-0.5 text-sm font-medium text-purple-700">
+            <p className="mt-0.5 text-sm font-medium text-brand-700">
               {data.specialty}
             </p>
           ) : null}
@@ -181,8 +181,8 @@ function AvailabilityGroup({
     slots[0]?.payload;
 
   return (
-    <section className="medibook-message mt-3 rounded-2xl border border-purple-100 bg-purple-50/50 p-4">
-      <div className="text-xs font-semibold uppercase tracking-[0.12em] text-purple-600">
+    <section className="medibook-message mt-3 rounded-2xl border border-brand-100 bg-brand-50/50 p-4">
+      <div className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-600">
         Availability
       </div>
 
@@ -212,7 +212,7 @@ function AvailabilityGroup({
             return (
               <span
                 key={action.id}
-                className="rounded-xl border border-purple-100 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm"
+                className="rounded-xl border border-brand-100 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm"
               >
                 {time}
               </span>
@@ -248,9 +248,9 @@ function AppointmentPreview({
   }
 
   return (
-    <section className="medibook-message mt-3 overflow-hidden rounded-2xl border border-purple-200 bg-white shadow-sm">
-      <div className="border-b border-purple-100 bg-purple-50 px-4 py-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-purple-600">
+    <section className="medibook-message mt-3 overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-sm">
+      <div className="border-b border-brand-100 bg-brand-50 px-4 py-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-600">
           Appointment preview
         </p>
       </div>
@@ -263,7 +263,7 @@ function AppointmentPreview({
         ) : null}
 
         {data.specialty ? (
-          <p className="mt-1 text-sm text-purple-700">
+          <p className="mt-1 text-sm text-brand-700">
             {data.specialty}
           </p>
         ) : null}

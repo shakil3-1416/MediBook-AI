@@ -128,7 +128,7 @@ export default function HospitalAuditPage() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <div className="flex items-center gap-2 text-sm font-semibold text-purple-600">
+            <div className="flex items-center gap-2 text-sm font-semibold text-brand-600">
               <ClipboardList size={16} />
               Governance
             </div>
@@ -168,7 +168,7 @@ export default function HospitalAuditPage() {
                   )
               }
               placeholder="Search action, actor, entity, ID or date"
-              className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-purple-400"
+              className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-brand-400"
             />
           </div>
         </div>

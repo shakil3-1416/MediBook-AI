@@ -20,11 +20,11 @@ export default async function LoginPage({
   return (
     <main className="grid min-h-screen bg-white lg:grid-cols-2">
 
-      <section className="relative hidden overflow-hidden bg-purple-700 p-14 text-white lg:flex lg:flex-col lg:justify-between">
+      <section className="relative hidden overflow-hidden bg-brand-700 p-14 text-white lg:flex lg:flex-col lg:justify-between">
 
         <div className="relative z-10 flex items-center gap-3">
 
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white font-bold text-purple-700">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white font-bold text-brand-700">
             M
           </div>
 
@@ -33,7 +33,7 @@ export default async function LoginPage({
               MediBook
             </div>
 
-            <div className="text-xs text-purple-100">
+            <div className="text-xs text-brand-100">
               AI hospital appointment assistant
             </div>
           </div>
@@ -43,7 +43,7 @@ export default async function LoginPage({
 
         <div className="relative z-10 max-w-xl">
 
-          <p className="mb-5 text-sm text-purple-100">
+          <p className="mb-5 text-sm text-brand-100">
             Healthcare appointments through conversation
           </p>
 
@@ -53,7 +53,7 @@ export default async function LoginPage({
             Book in the same chat.
           </h1>
 
-          <p className="mt-6 max-w-lg text-lg leading-8 text-purple-100">
+          <p className="mt-6 max-w-lg text-lg leading-8 text-brand-100">
             Sign in to continue your conversation,
             fees and availability. Book, reschedule
             or cancel without navigating a hospital portal.
@@ -62,14 +62,14 @@ export default async function LoginPage({
         </div>
 
 
-        <div className="relative z-10 text-sm text-purple-100">
+        <div className="relative z-10 text-sm text-brand-100">
           Connected securely to the hospital&apos;s appointment system.
         </div>
 
 
         <div className="absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-white/10" />
 
-        <div className="absolute -bottom-48 -left-28 h-[500px] w-[500px] rounded-full bg-purple-950/20" />
+        <div className="absolute -bottom-48 -left-28 h-[500px] w-[500px] rounded-full bg-brand-950/20" />
 
       </section>
 
@@ -80,7 +80,7 @@ export default async function LoginPage({
 
           <div className="mb-9 flex items-center gap-3 lg:hidden">
 
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-700 font-bold text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-700 font-bold text-white">
               M
             </div>
 
@@ -134,7 +134,7 @@ export default async function LoginPage({
                 autoComplete="email"
                 required
                 placeholder="you@example.com"
-                className="w-full rounded-2xl border border-purple-200 px-4 py-3.5 text-sm outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-100"
+                className="w-full rounded-2xl border border-brand-200 px-4 py-3.5 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100"
               />
 
             </div>
@@ -152,13 +152,13 @@ export default async function LoginPage({
                 autoComplete="current-password"
                 required
                 placeholder="Enter your password"
-                className="w-full rounded-2xl border border-purple-200 px-4 py-3.5 text-sm outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-100"
+                className="w-full rounded-2xl border border-brand-200 px-4 py-3.5 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100"
               />
 
             </div>
 
 
-            <button className="w-full rounded-2xl bg-purple-700 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-purple-800">
+            <button className="w-full rounded-2xl bg-brand-700 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-800">
               Continue to MediBook
             </button>
 
@@ -166,7 +166,7 @@ export default async function LoginPage({
           <div className="mt-4 text-center">
             <a
               href="/forgot-password"
-              className="text-sm font-medium text-purple-700 hover:text-purple-800"
+              className="text-sm font-medium text-brand-700 hover:text-brand-800"
             >
               Forgot password?
             </a>
@@ -183,7 +183,7 @@ export default async function LoginPage({
 
             <Link
               href={`/signup?next=${encodeURIComponent(next)}`}
-              className="mt-3 inline-flex w-full items-center justify-center rounded-2xl border border-purple-200 px-4 py-3.5 text-sm font-semibold text-purple-700 hover:bg-purple-50"
+              className="mt-3 inline-flex w-full items-center justify-center rounded-2xl border border-brand-200 px-4 py-3.5 text-sm font-semibold text-brand-700 hover:bg-brand-50"
             >
               Create an account
             </Link>

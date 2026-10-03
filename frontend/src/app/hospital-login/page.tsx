@@ -140,13 +140,13 @@ export default function HospitalLoginPage() {
 
   return (
     <main className="min-h-screen bg-slate-50 lg:grid lg:grid-cols-2">
-      <section className="hidden bg-purple-700 p-12 text-white lg:flex lg:flex-col lg:justify-between">
+      <section className="hidden bg-brand-700 p-12 text-white lg:flex lg:flex-col lg:justify-between">
         <div className="text-xl font-semibold">
           MediBook
         </div>
 
         <div className="max-w-lg">
-          <div className="text-sm font-semibold uppercase tracking-[0.18em] text-purple-200">
+          <div className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-200">
             Hospital Operations
           </div>
 
@@ -154,14 +154,14 @@ export default function HospitalLoginPage() {
             Run appointment operations from one place.
           </h1>
 
-          <p className="mt-6 max-w-md text-lg leading-8 text-purple-100">
+          <p className="mt-6 max-w-md text-lg leading-8 text-brand-100">
             Manage appointment activity, doctors, schedules,
             availability and hospital integrations with
             tenant-isolated MediBook operations.
           </p>
         </div>
 
-        <div className="text-sm text-purple-200">
+        <div className="text-sm text-brand-200">
           MediBook hospital workspace
         </div>
       </section>
@@ -170,14 +170,14 @@ export default function HospitalLoginPage() {
       <section className="flex min-h-screen items-center justify-center px-6 py-12">
         <div className="w-full max-w-md">
           <div className="lg:hidden">
-            <div className="text-xl font-semibold text-purple-700">
+            <div className="text-xl font-semibold text-brand-700">
               MediBook
             </div>
           </div>
 
 
           <div className="mt-8 lg:mt-0">
-            <div className="text-sm font-semibold text-purple-600">
+            <div className="text-sm font-semibold text-brand-600">
               Hospital Operations
             </div>
 
@@ -215,7 +215,7 @@ export default function HospitalLoginPage() {
                       event.target.value,
                     )
                 }
-                className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-purple-500 transition focus:ring-2"
+                className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-brand-500 transition focus:ring-2"
                 placeholder="you@hospital.com"
               />
             </div>
@@ -239,7 +239,7 @@ export default function HospitalLoginPage() {
                       event.target.value,
                     )
                 }
-                className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-purple-500 transition focus:ring-2"
+                className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-brand-500 transition focus:ring-2"
                 placeholder="Enter your password"
               />
             </div>
@@ -257,7 +257,7 @@ export default function HospitalLoginPage() {
                 loading
               }
               type="submit"
-              className="w-full rounded-xl bg-purple-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {
                 loading

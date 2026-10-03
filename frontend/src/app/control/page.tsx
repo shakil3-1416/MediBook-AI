@@ -462,7 +462,7 @@ export default function ControlCenterPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-5 py-5 md:px-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-semibold text-purple-600">
+            <div className="flex items-center gap-2 text-sm font-semibold text-brand-600">
               <ShieldCheck
                 size={17}
               />
@@ -502,7 +502,7 @@ export default function ControlCenterPage() {
                     true
                   )
               }
-              className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white"
             >
               <Plus
                 size={15}
@@ -576,7 +576,7 @@ export default function ControlCenterPage() {
                       )
                   }
                   placeholder="Search hospitals"
-                  className="w-full rounded-xl border border-slate-200 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-purple-400"
+                  className="w-full rounded-xl border border-slate-200 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-brand-400"
                 />
               </div>
             </div>
@@ -609,7 +609,7 @@ export default function ControlCenterPage() {
                           <div className="flex items-center gap-2 font-semibold">
                             <Building2
                               size={16}
-                              className="text-purple-600"
+                              className="text-brand-600"
                             />
 
                             {
@@ -743,7 +743,7 @@ export default function ControlCenterPage() {
                       "rounded-xl px-3 py-2 text-xs font-semibold",
                       selected.status ===
                       "suspended"
-                        ? "bg-emerald-600 text-white"
+                        ? "bg-brand-600 text-white"
                         : "border border-rose-200 text-rose-700",
                     ].join(
                       " ",
@@ -1217,7 +1217,7 @@ function ProvisionHospital(
             disabled={
               busy
             }
-            className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
           >
             {
               busy

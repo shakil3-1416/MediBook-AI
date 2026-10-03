@@ -317,11 +317,11 @@ export default function DoctorProfilePage({
 
       <section className="mt-6 overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-sm">
 
-        <div className="bg-gradient-to-br from-emerald-50 via-white to-white p-7 md:p-10">
+        <div className="bg-gradient-to-br from-brand-50 via-white to-white p-7 md:p-10">
 
           <div className="flex flex-col gap-6 md:flex-row md:items-start">
 
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-[28px] bg-emerald-100 text-emerald-700">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-[28px] bg-brand-100 text-brand-700">
 
               <UserRound
                 size={40}
@@ -334,7 +334,7 @@ export default function DoctorProfilePage({
 
               <div className="flex flex-wrap items-center gap-2">
 
-                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
+                <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-bold text-brand-800">
 
                   {
                     doctor.specialty.name
@@ -489,7 +489,7 @@ export default function DoctorProfilePage({
             </div>
 
 
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700">
 
               <CheckCircle2
                 size={15}
@@ -547,7 +547,7 @@ export default function DoctorProfilePage({
 
                       <CalendarDays
                         size={16}
-                        className="text-emerald-600"
+                        className="text-brand-600"
                       />
 
                       {
@@ -585,12 +585,12 @@ export default function DoctorProfilePage({
                               href={
                                 `/assistant?prompt=${prompt}`
                               }
-                              className="group inline-flex min-w-[116px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-800"
+                              className="group inline-flex min-w-[116px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-800"
                             >
 
                               <Clock3
                                 size={15}
-                                className="text-slate-500 transition group-hover:text-emerald-600"
+                                className="text-slate-500 transition group-hover:text-brand-600"
                               />
 
                               {

@@ -490,7 +490,7 @@ export default function SignupPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-10">
       <div className="mx-auto max-w-lg">
-        <div className="text-xl font-semibold text-purple-700">
+        <div className="text-xl font-semibold text-brand-700">
           MediBook
         </div>
 
@@ -554,7 +554,7 @@ export default function SignupPage() {
                           )
                       }
                       autoComplete="name"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </label>
 
@@ -577,7 +577,7 @@ export default function SignupPage() {
                           )
                       }
                       autoComplete="email"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </label>
 
@@ -600,7 +600,7 @@ export default function SignupPage() {
                           )
                       }
                       autoComplete="tel"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </label>
 
@@ -621,7 +621,7 @@ export default function SignupPage() {
                             e.target.value,
                           )
                       }
-                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500"
                     >
                       <option value="">
                         Select gender
@@ -694,7 +694,7 @@ export default function SignupPage() {
                           )
                       }
                       autoComplete="new-password"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </label>
 
@@ -717,7 +717,7 @@ export default function SignupPage() {
                           )
                       }
                       autoComplete="new-password"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </label>
 
@@ -739,7 +739,7 @@ export default function SignupPage() {
                     disabled={
                       busy
                     }
-                    className="w-full rounded-xl bg-purple-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
+                    className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
                   >
                     {
                       busy
@@ -787,7 +787,7 @@ export default function SignupPage() {
                           )
                       }
                       placeholder="000000"
-                      className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-4 text-center font-mono text-2xl tracking-[0.4em] outline-none focus:ring-2 focus:ring-purple-500"
+                      className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-4 text-center font-mono text-2xl tracking-[0.4em] outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </label>
 
@@ -811,7 +811,7 @@ export default function SignupPage() {
                       code.length !==
                       6
                     }
-                    className="w-full rounded-xl bg-purple-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
+                    className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
                   >
                     {
                       busy
@@ -839,7 +839,7 @@ export default function SignupPage() {
                             onClick={
                               resendCode
                             }
-                            className="font-medium text-purple-600"
+                            className="font-medium text-brand-600"
                           >
                             Resend code
                           </button>

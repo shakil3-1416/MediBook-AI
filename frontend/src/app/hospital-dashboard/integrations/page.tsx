@@ -166,7 +166,7 @@ export default function IntegrationsPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div>
-            <div className="text-sm font-semibold text-purple-600">
+            <div className="text-sm font-semibold text-brand-600">
               MediBook Hospital Operations
             </div>
 
@@ -234,7 +234,7 @@ export default function IntegrationsPage() {
               onClick={
                 () => void create()
               }
-              className="rounded-xl bg-purple-600 px-4 py-2 font-medium text-white disabled:opacity-40"
+              className="rounded-xl bg-brand-600 px-4 py-2 font-medium text-white disabled:opacity-40"
             >
               Add integration
             </button>
@@ -300,7 +300,7 @@ export default function IntegrationsPage() {
                         item.id,
                       )
                   }
-                  className="mt-5 rounded-xl border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700"
+                  className="mt-5 rounded-xl border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700"
                 >
                   Check health
                 </button>

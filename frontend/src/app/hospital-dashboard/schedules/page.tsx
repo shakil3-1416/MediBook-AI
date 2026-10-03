@@ -669,7 +669,7 @@ export default function HospitalSchedulesPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div>
-            <div className="text-sm font-semibold text-purple-600">
+            <div className="text-sm font-semibold text-brand-600">
               MediBook Hospital Operations
             </div>
 
@@ -838,7 +838,7 @@ export default function HospitalSchedulesPage() {
                     void createRule();
                   }
                 }
-                className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
+                className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
               >
                 Add rule
               </button>
@@ -994,7 +994,7 @@ export default function HospitalSchedulesPage() {
                     void createException();
                   }
                 }
-                className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
+                className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
               >
                 Add exception
               </button>
@@ -1045,7 +1045,7 @@ export default function HospitalSchedulesPage() {
           </section>
         </div>
 
-        <section className="rounded-2xl border border-purple-200 bg-white p-6 shadow-sm">
+        <section className="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-950">
             Preview and apply
           </h2>
@@ -1091,7 +1091,7 @@ export default function HospitalSchedulesPage() {
                   void previewSchedule();
                 }
               }
-              className="rounded-xl border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700"
+              className="rounded-xl border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700"
             >
               Preview
             </button>
@@ -1110,7 +1110,7 @@ export default function HospitalSchedulesPage() {
                   void applySchedule();
                 }
               }
-              className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
+              className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
             >
               Apply schedule
             </button>

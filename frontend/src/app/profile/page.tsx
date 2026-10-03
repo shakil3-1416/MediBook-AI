@@ -415,7 +415,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-purple-50/30 p-8 text-sm text-slate-500">
+      <main className="min-h-screen bg-brand-50/30 p-8 text-sm text-slate-500">
         Loading profile...
       </main>
     );
@@ -424,8 +424,8 @@ export default function ProfilePage() {
 
   if (!user) {
     return (
-      <main className="min-h-screen bg-purple-50/30 p-8">
-        <div className="mx-auto max-w-lg rounded-2xl border border-purple-100 bg-white p-6">
+      <main className="min-h-screen bg-brand-50/30 p-8">
+        <div className="mx-auto max-w-lg rounded-2xl border border-brand-100 bg-white p-6">
           <p>
             {message
               ||
@@ -434,7 +434,7 @@ export default function ProfilePage() {
 
           <a
             href="/login"
-            className="mt-4 inline-block rounded-xl bg-purple-700 px-4 py-2.5 text-sm font-semibold text-white"
+            className="mt-4 inline-block rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white"
           >
             Sign in
           </a>
@@ -464,7 +464,7 @@ export default function ProfilePage() {
 
 
   return (
-    <main className="min-h-screen bg-purple-50/30 px-5 py-8">
+    <main className="min-h-screen bg-brand-50/30 px-5 py-8">
 
       <div className="mx-auto max-w-3xl">
 
@@ -473,12 +473,12 @@ export default function ProfilePage() {
           onClick={() =>
             window.history.back()
           }
-          className="text-sm font-medium text-purple-700"
+          className="text-sm font-medium text-brand-700"
         >
           ← Back
         </button>
 
-        <div className="mt-5 rounded-3xl border border-purple-100 bg-white p-6 shadow-sm md:p-8">
+        <div className="mt-5 rounded-3xl border border-brand-100 bg-white p-6 shadow-sm md:p-8">
 
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
 
@@ -491,13 +491,13 @@ export default function ProfilePage() {
                 className="h-20 w-20 rounded-3xl object-cover"
               />
             ) : (
-              <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-purple-700 text-xl font-bold text-white">
+              <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-700 text-xl font-bold text-white">
                 {initials || "P"}
               </div>
             )}
 
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-purple-600">
+              <div className="text-xs font-semibold uppercase tracking-wider text-brand-600">
                 Patient account
               </div>
 
@@ -537,7 +537,7 @@ export default function ProfilePage() {
 
         <form
           onSubmit={saveProfile}
-          className="mt-5 rounded-3xl border border-purple-100 bg-white p-6 shadow-sm md:p-8"
+          className="mt-5 rounded-3xl border border-brand-100 bg-white p-6 shadow-sm md:p-8"
         >
 
           <h2 className="text-lg font-semibold text-slate-950">
@@ -556,7 +556,7 @@ export default function ProfilePage() {
                     event.target.value,
                   )
                 }
-                className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 outline-none focus:border-purple-400"
+                className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 outline-none focus:border-brand-400"
               />
             </label>
 
@@ -570,7 +570,7 @@ export default function ProfilePage() {
                     event.target.value,
                   )
                 }
-                className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 outline-none focus:border-purple-400"
+                className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 outline-none focus:border-brand-400"
               />
             </label>
 
@@ -583,7 +583,7 @@ export default function ProfilePage() {
                     event.target.value,
                   )
                 }
-                className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 outline-none focus:border-purple-400"
+                className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 outline-none focus:border-brand-400"
               >
                 <option value="">
                   Prefer not to say
@@ -607,7 +607,7 @@ export default function ProfilePage() {
 
           <button
             disabled={busy}
-            className="mt-5 rounded-xl bg-purple-700 px-5 py-3 text-sm font-semibold text-white disabled:opacity-50"
+            className="mt-5 rounded-xl bg-brand-700 px-5 py-3 text-sm font-semibold text-white disabled:opacity-50"
           >
             Save profile
           </button>
@@ -615,7 +615,7 @@ export default function ProfilePage() {
         </form>
 
 
-        <div className="mt-5 rounded-3xl border border-purple-100 bg-white p-6 shadow-sm md:p-8">
+        <div className="mt-5 rounded-3xl border border-brand-100 bg-white p-6 shadow-sm md:p-8">
 
           <h2 className="text-lg font-semibold text-slate-950">
             Email
@@ -641,13 +641,13 @@ export default function ProfilePage() {
                       event.target.value,
                     )
                   }
-                  className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 outline-none focus:border-purple-400"
+                  className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 outline-none focus:border-brand-400"
                 />
               </label>
 
               <button
                 disabled={busy}
-                className="mt-4 rounded-xl border border-purple-200 px-4 py-2.5 text-sm font-semibold text-purple-700 disabled:opacity-50"
+                className="mt-4 rounded-xl border border-brand-200 px-4 py-2.5 text-sm font-semibold text-brand-700 disabled:opacity-50"
               >
                 Verify new email
               </button>
@@ -672,13 +672,13 @@ export default function ProfilePage() {
                       ),
                     )
                   }
-                  className="mt-2 w-full rounded-xl border border-purple-100 px-3 py-3 tracking-[0.35em] outline-none focus:border-purple-400"
+                  className="mt-2 w-full rounded-xl border border-brand-100 px-3 py-3 tracking-[0.35em] outline-none focus:border-brand-400"
                 />
               </label>
 
               <button
                 disabled={busy}
-                className="mt-4 rounded-xl bg-purple-700 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
+                className="mt-4 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50"
               >
                 Confirm email change
               </button>
@@ -688,7 +688,7 @@ export default function ProfilePage() {
         </div>
 
 
-        <div className="mt-5 rounded-3xl border border-purple-100 bg-white p-6 shadow-sm md:p-8">
+        <div className="mt-5 rounded-3xl border border-brand-100 bg-white p-6 shadow-sm md:p-8">
 
           <h2 className="text-lg font-semibold text-slate-950">
             Password
@@ -700,7 +700,7 @@ export default function ProfilePage() {
 
           <a
             href="/forgot-password"
-            className="mt-4 inline-block rounded-xl border border-purple-200 px-4 py-2.5 text-sm font-semibold text-purple-700"
+            className="mt-4 inline-block rounded-xl border border-brand-200 px-4 py-2.5 text-sm font-semibold text-brand-700"
           >
             Reset password
           </a>
@@ -709,7 +709,7 @@ export default function ProfilePage() {
 
 
         {message && (
-          <div className="mt-5 rounded-2xl bg-purple-100 px-4 py-3 text-sm text-purple-900">
+          <div className="mt-5 rounded-2xl bg-brand-100 px-4 py-3 text-sm text-brand-900">
             {message}
           </div>
         )}

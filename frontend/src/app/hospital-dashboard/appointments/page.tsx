@@ -59,7 +59,7 @@ function badge(
     status ===
     "confirmed"
   ) {
-    return "bg-emerald-50 text-emerald-700";
+    return "bg-brand-50 text-brand-700";
   }
 
   if (
@@ -342,7 +342,7 @@ export default function HospitalAppointmentsPage() {
           <div>
             <Link
               href="/hospital-dashboard"
-              className="text-sm font-medium text-purple-600 hover:text-purple-700"
+              className="text-sm font-medium text-brand-600 hover:text-brand-700"
             >
               ← Hospital overview
             </Link>
@@ -356,7 +356,7 @@ export default function HospitalAppointmentsPage() {
             </p>
           </div>
 
-          <div className="rounded-full bg-purple-50 px-3 py-1.5 text-sm font-medium text-purple-700">
+          <div className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-medium text-brand-700">
             {
               data?.count ??
               0
@@ -391,7 +391,7 @@ export default function HospitalAppointmentsPage() {
                   className={
                     status ===
                     item
-                      ? "rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white"
+                      ? "rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white"
                       : "rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium capitalize text-slate-700 hover:bg-slate-50"
                   }
                 >
@@ -421,7 +421,7 @@ export default function HospitalAppointmentsPage() {
                   )
               }
               placeholder="Search confirmation code, doctor or patient"
-              className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none ring-purple-500 focus:ring-2"
+              className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none ring-brand-500 focus:ring-2"
             />
 
 
@@ -457,7 +457,7 @@ export default function HospitalAppointmentsPage() {
 
             <button
               type="submit"
-              className="rounded-xl bg-purple-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-purple-700"
+              className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700"
             >
               Search
             </button>

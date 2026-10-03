@@ -190,7 +190,7 @@ export function SearchableCombobox({
               }
             }
           }
-          className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-16 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500"
+          className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-16 text-sm text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500"
         />
 
 
@@ -253,7 +253,7 @@ export function SearchableCombobox({
 
                   value ===
                   option.name
-                    ? "bg-emerald-50 font-semibold text-emerald-800"
+                    ? "bg-brand-50 font-semibold text-brand-800"
                     : "text-slate-700 hover:bg-slate-50",
                 ].join(" ")}
               >
@@ -264,7 +264,7 @@ export function SearchableCombobox({
                   option.name ? (
                     <Check
                       size={14}
-                      className="shrink-0 text-emerald-600"
+                      className="shrink-0 text-brand-600"
                     />
                   ) : (
                     <span className="w-3.5" />

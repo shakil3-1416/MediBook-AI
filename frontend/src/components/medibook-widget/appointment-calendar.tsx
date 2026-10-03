@@ -741,7 +741,7 @@ export default function AppointmentCalendar({
                       className={[
                         "relative min-h-20 border-b border-r border-slate-200 p-2 text-left transition",
                         selected
-                          ? "bg-purple-50"
+                          ? "bg-brand-50"
                           : "hover:bg-slate-50",
                       ].join(
                         " ",
@@ -757,7 +757,7 @@ export default function AppointmentCalendar({
                       {
                         count > 0
                           ? (
-                            <span className="mt-2 block w-fit rounded-full bg-purple-100 px-2 py-0.5 text-[11px] font-semibold text-purple-700">
+                            <span className="mt-2 block w-fit rounded-full bg-brand-100 px-2 py-0.5 text-[11px] font-semibold text-brand-700">
                               {
                                 count
                               }

@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-50: #F2F7F4;
+  --color-brand-100: #E3EFE8;
+  --color-brand-200: #C8E0D2;
+  --color-brand-300: #A6CBB6;
+  --color-brand-400: #7DB394;
+  --color-brand-500: #5B9A77;
+  --color-brand-600: #3D7A5A;
+  --color-brand-700: #2F6448;
+  --color-brand-800: #234B37;
+  --color-brand-900: #173326;
+  --color-brand-950: #0E2119;
+  --color-slate-50: #F9FAF9;
+  --color-slate-100: #F2F5F4;
+  --color-slate-200: #E2EAE6;
+  --color-slate-300: #CAD7D0;
+  --color-slate-400: #91A79C;
+  --color-slate-500: #62776D;
+  --color-slate-600: #46594F;
+  --color-slate-700: #33443B;
+  --color-slate-800: #1D2B24;
+  --color-slate-900: #0E1A14;
+  --color-slate-950: #030805;
+  --font-sans: var(--font-inter), var(--font-bangla), ui-sans-serif, system-ui, sans-serif;
+}
+
+
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -20,10 +47,7 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-sans);
 }
 
 button,
@@ -38,8 +62,8 @@ button {
 }
 
 ::selection {
-  background: #a7f3d0;
-  color: #064e3b;
+  background: #C8E0D2;
+  color: #173326;
 }
 
 
@@ -69,7 +93,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid #5B9A77;
   outline-offset: 2px;
 }
 
@@ -263,40 +287,40 @@ textarea:focus-visible {
    ==================================================== */
 
 :root {
-  --background: #f8f7fc;
-  --foreground: #15111f;
+  --background: #F4F8F5;
+  --foreground: #0F1A14;
 
-  --mb-bg: #f8f7fc;
-  --mb-bg-soft: #faf9fe;
+  --mb-bg: #F4F8F5;
+  --mb-bg-soft: #F8FBF9;
 
   --mb-surface: #ffffff;
-  --mb-surface-soft: #fbfaff;
-  --mb-surface-muted: #f5f3fb;
+  --mb-surface-soft: #FAFCFB;
+  --mb-surface-muted: #EEF5F0;
 
-  --mb-text: #171321;
-  --mb-text-secondary: #625d6f;
-  --mb-text-muted: #6b6577;
+  --mb-text: #1B2620;
+  --mb-text-secondary: #53625A;
+  --mb-text-muted: #56655D;
 
-  --mb-border: #e9e5f0;
-  --mb-border-strong: #dcd5e8;
+  --mb-border: #E1EAE4;
+  --mb-border-strong: #CFDDD4;
 
-  --mb-purple-50: #f7f3ff;
-  --mb-purple-100: #eee7ff;
-  --mb-purple-200: #dfd1ff;
-  --mb-purple-300: #c9aeff;
-  --mb-purple-400: #ad7dff;
-  --mb-purple-500: #8d4cf6;
-  --mb-purple-600: #7430df;
-  --mb-purple-700: #6025bc;
-  --mb-purple-800: #502298;
-  --mb-purple-900: #431f7a;
+  --mb-brand-50: #F2F7F4;
+  --mb-brand-100: #E3EFE8;
+  --mb-brand-200: #C8E0D2;
+  --mb-brand-300: #A6CBB6;
+  --mb-brand-400: #7DB394;
+  --mb-brand-500: #5B9A77;
+  --mb-brand-600: #3D7A5A;
+  --mb-brand-700: #2F6448;
+  --mb-brand-800: #234B37;
+  --mb-brand-900: #173326;
 
-  --mb-primary: #7430df;
-  --mb-primary-hover: #6025bc;
-  --mb-primary-soft: #f3edff;
+  --mb-primary: #3D7A5A;
+  --mb-primary-hover: #2F6448;
+  --mb-primary-soft: #E8F2EC;
 
-  --mb-success: #15803d;
-  --mb-success-soft: #f0fdf4;
+  --mb-success: #2F6448;
+  --mb-success-soft: #E8F2EC;
 
   --mb-warning: #b45309;
   --mb-warning-soft: #fffbeb;
@@ -362,7 +386,7 @@ body {
     ),
     linear-gradient(
       180deg,
-      #fbfaff 0%,
+      #FAFCFB 0%,
       var(--mb-bg) 42%,
       #f8fafc 100%
     );
@@ -392,8 +416,8 @@ body {
 
 
 ::selection {
-  background: var(--mb-purple-200);
-  color: var(--mb-purple-900);
+  background: var(--mb-brand-200);
+  color: var(--mb-brand-900);
 }
 
 
@@ -455,7 +479,7 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--mb-purple-500);
+  outline: 2px solid var(--mb-brand-500);
   outline-offset: 2px;
 }
 
@@ -474,7 +498,7 @@ select {
 
 input::placeholder,
 textarea::placeholder {
-  color: #716b7e;
+  color: #5F6E66;
   opacity: 1;
 }
 
@@ -518,7 +542,7 @@ tbody tr {
 * {
   scrollbar-width: thin;
   scrollbar-color:
-    #cfc5dd
+    #C9D8CF
     transparent;
 }
 
@@ -540,8 +564,8 @@ tbody tr {
   border-radius: 999px;
   background:
     linear-gradient(
-      #cfc5dd,
-      #cfc5dd
+      #C9D8CF,
+      #C9D8CF
     )
     padding-box;
 }
@@ -550,8 +574,8 @@ tbody tr {
 *::-webkit-scrollbar-thumb:hover {
   background:
     linear-gradient(
-      #b6a8cc,
-      #b6a8cc
+      #A9BDB1,
+      #A9BDB1
     )
     padding-box;
 }
@@ -578,7 +602,7 @@ tbody tr {
     linear-gradient(
       180deg,
       #ffffff 0%,
-      #fdfcff 100%
+      #FCFDFC 100%
     );
   box-shadow: var(--mb-shadow-md);
 }
@@ -622,8 +646,8 @@ tbody tr {
   background:
     linear-gradient(
       135deg,
-      var(--mb-purple-600),
-      #8b46e8
+      var(--mb-brand-600),
+      #4F8A6A
     );
 
   color: #ffffff;
@@ -639,8 +663,8 @@ tbody tr {
   background:
     linear-gradient(
       135deg,
-      var(--mb-purple-700),
-      var(--mb-purple-600)
+      var(--mb-brand-700),
+      var(--mb-brand-600)
     );
 
   box-shadow:
@@ -672,7 +696,7 @@ tbody tr {
 
 [data-medibook-chat] textarea:focus,
 [data-medibook-chat] input:focus {
-  border-color: var(--mb-purple-400);
+  border-color: var(--mb-brand-400);
   box-shadow: var(--mb-ring);
 }
 
@@ -687,9 +711,9 @@ tbody tr {
 
 
 [data-medibook-calendar] button[aria-current="date"] {
-  border-color: var(--mb-purple-300);
+  border-color: var(--mb-brand-300);
   background: var(--mb-primary-soft);
-  color: var(--mb-purple-800);
+  color: var(--mb-brand-800);
 }
 
 
@@ -711,7 +735,7 @@ tbody tr {
 
 
 [data-medibook-hospital] tbody tr:hover {
-  background: #faf8ff;
+  background: #F9FBFA;
 }
 
 
@@ -726,8 +750,8 @@ tbody tr {
     background:
       linear-gradient(
         180deg,
-        #fbfaff 0%,
-        #f8f7fc 100%
+        #FAFCFB 0%,
+        #F4F8F5 100%
       );
   }
 

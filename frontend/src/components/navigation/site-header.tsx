@@ -203,7 +203,7 @@ export function SiteHeader() {
           className="flex items-center gap-3"
         >
 
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-600 font-bold text-white">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 font-bold text-white">
             M
           </div>
 
@@ -235,7 +235,7 @@ export function SiteHeader() {
 
               <Link
                 href="/signup"
-                className="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700"
               >
                 Create account
               </Link>
@@ -258,7 +258,7 @@ export function SiteHeader() {
                   pathname.startsWith(
                     "/appointments",
                   )
-                    ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                    ? "border-brand-200 bg-brand-50 text-brand-700"
                     : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50",
                 ].join(" ")}
               >
@@ -325,7 +325,7 @@ export function SiteHeader() {
 
                       <div className="flex items-center gap-3">
 
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                           <UserRound
                             size={20}
                           />

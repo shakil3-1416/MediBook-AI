@@ -61,7 +61,7 @@ export function AppShell({
             href="/"
             className="flex items-center gap-3"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white">
               <Stethoscope
                 size={20}
               />
@@ -100,7 +100,7 @@ export function AppShell({
                   className={[
                     "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
                     active
-                      ? "bg-emerald-50 text-emerald-800"
+                      ? "bg-brand-50 text-brand-800"
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-950",
                   ].join(" ")}
                 >
@@ -122,7 +122,7 @@ export function AppShell({
             </div>
 
             <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="h-2 w-2 rounded-full bg-brand-500" />
               Backend connected
             </div>
           </div>
@@ -144,7 +144,7 @@ export function AppShell({
               simplified.
             </div>
 
-            <div className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
+            <div className="rounded-full bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-700">
               System online
             </div>
           </div>

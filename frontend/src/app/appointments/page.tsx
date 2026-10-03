@@ -567,7 +567,7 @@ export default function AppointmentsPage() {
 
           <div>
 
-            <div className="text-sm font-bold text-emerald-400">
+            <div className="text-sm font-bold text-brand-400">
               MediBook
             </div>
 
@@ -770,7 +770,7 @@ export default function AppointmentsPage() {
 
                         cancelled
                           ? "bg-slate-100 text-slate-500"
-                          : "bg-emerald-50 text-emerald-700",
+                          : "bg-brand-50 text-brand-700",
                       ].join(
                         " ",
                       )}>
@@ -800,7 +800,7 @@ export default function AppointmentsPage() {
 
                             cancelled
                               ? "bg-slate-100 text-slate-600"
-                              : "bg-emerald-100 text-emerald-800",
+                              : "bg-brand-100 text-brand-800",
                           ].join(
                             " ",
                           )}>
@@ -814,7 +814,7 @@ export default function AppointmentsPage() {
                         </div>
 
 
-                        <div className="mt-1 text-sm font-semibold text-emerald-700">
+                        <div className="mt-1 text-sm font-semibold text-brand-700">
 
                           {
                             appointment.doctor.specialty
@@ -930,7 +930,7 @@ export default function AppointmentsPage() {
                               appointment,
                             )
                         }
-                        className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50"
+                        className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
                       >
 
                         <RefreshCcw
@@ -990,7 +990,7 @@ export default function AppointmentsPage() {
 
               <div>
 
-                <div className="flex items-center gap-2 text-sm font-bold text-emerald-700">
+                <div className="flex items-center gap-2 text-sm font-bold text-brand-700">
 
                   <CalendarClock
                     size={17}
@@ -1124,7 +1124,7 @@ export default function AppointmentsPage() {
                               slot,
                             )
                         }
-                        className="rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:border-emerald-500 hover:bg-emerald-50 disabled:opacity-50"
+                        className="rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:border-brand-500 hover:bg-brand-50 disabled:opacity-50"
                       >
 
                         <div className="text-sm font-bold text-slate-950">
@@ -1141,7 +1141,7 @@ export default function AppointmentsPage() {
 
                           <Clock3
                             size={15}
-                            className="text-emerald-600"
+                            className="text-brand-600"
                           />
 
                           {

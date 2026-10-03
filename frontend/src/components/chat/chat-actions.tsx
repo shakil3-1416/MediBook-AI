@@ -86,7 +86,7 @@ export function ChatActions({
               ? "border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
               : action.variant ===
                   "primary"
-                ? "border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700"
+                ? "border-brand-600 bg-brand-600 text-white hover:bg-brand-700"
                 : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50";
 
           return (

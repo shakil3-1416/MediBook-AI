@@ -60,7 +60,7 @@ export default function HomePage() {
 
             <Link
               href="/widget/medibook-demo"
-              className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-500"
+              className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-500"
             >
               Try MediBook
             </Link>
@@ -71,7 +71,7 @@ export default function HomePage() {
       <section className="overflow-hidden bg-slate-950">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div>
-            <div className="inline-flex rounded-full border border-purple-400/20 bg-purple-400/10 px-3 py-1.5 text-sm font-medium text-purple-200">
+            <div className="inline-flex rounded-full border border-brand-400/20 bg-brand-400/10 px-3 py-1.5 text-sm font-medium text-brand-200">
               AI appointment scheduling for hospitals
             </div>
 
@@ -89,7 +89,7 @@ export default function HomePage() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/widget/medibook-demo"
-                className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white hover:bg-purple-500"
+                className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-500"
               >
                 <ChatIcon />
                 Open patient demo
@@ -123,7 +123,7 @@ export default function HomePage() {
 
           <div className="rounded-[28px] border border-white/10 bg-white shadow-2xl">
             <div className="flex items-center gap-3 border-b border-slate-200 px-5 py-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-600 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white">
                 <ChatIcon />
               </div>
 
@@ -132,14 +132,14 @@ export default function HomePage() {
                   MediBook Assistant
                 </div>
 
-                <div className="text-xs text-emerald-600">
+                <div className="text-xs text-brand-600">
                   Connected to hospital scheduling
                 </div>
               </div>
             </div>
 
             <div className="space-y-5 bg-slate-50 p-6">
-              <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-purple-600 px-4 py-3 text-sm leading-6 text-white">
+              <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-brand-600 px-4 py-3 text-sm leading-6 text-white">
                 I need a female cardiologist tomorrow evening.
               </div>
 
@@ -148,7 +148,7 @@ export default function HomePage() {
                 real appointment availability for tomorrow evening.
               </div>
 
-              <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-purple-600 px-4 py-3 text-sm leading-6 text-white">
+              <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-brand-600 px-4 py-3 text-sm leading-6 text-white">
                 Show me the available times.
               </div>
 
@@ -170,7 +170,7 @@ export default function HomePage() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="max-w-3xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-purple-600">
+            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-600">
               How MediBook fits
             </div>
 
@@ -186,7 +186,7 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             <div className="rounded-2xl border border-slate-200 p-6">
-              <div className="text-sm font-semibold text-purple-600">
+              <div className="text-sm font-semibold text-brand-600">
                 01
               </div>
 
@@ -201,7 +201,7 @@ export default function HomePage() {
             </div>
 
             <div className="rounded-2xl border border-slate-200 p-6">
-              <div className="text-sm font-semibold text-purple-600">
+              <div className="text-sm font-semibold text-brand-600">
                 02
               </div>
 
@@ -216,7 +216,7 @@ export default function HomePage() {
             </div>
 
             <div className="rounded-2xl border border-slate-200 p-6">
-              <div className="text-sm font-semibold text-purple-600">
+              <div className="text-sm font-semibold text-brand-600">
                 03
               </div>
 
@@ -236,7 +236,7 @@ export default function HomePage() {
       <section className="bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:items-center">
           <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-purple-600">
+            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-600">
               Patient journey
             </div>
 
@@ -258,7 +258,7 @@ export default function HomePage() {
                   key={item}
                   className="flex items-start gap-3"
                 >
-                  <div className="mt-1 text-purple-600">
+                  <div className="mt-1 text-brand-600">
                     <CheckIcon />
                   </div>
 
@@ -269,7 +269,7 @@ export default function HomePage() {
           </div>
 
           <div className="rounded-3xl bg-slate-950 p-7 text-white shadow-xl">
-            <div className="text-sm font-medium text-purple-300">
+            <div className="text-sm font-medium text-brand-300">
               Hospital website
             </div>
 
@@ -279,7 +279,7 @@ export default function HomePage() {
               <div className="mt-2 h-3 w-4/5 rounded bg-white/10" />
 
               <div className="mt-12 flex justify-end">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-600 shadow-lg">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 shadow-lg">
                   <ChatIcon />
                 </div>
               </div>
@@ -299,10 +299,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-purple-700">
+      <section className="bg-brand-700">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-16 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="text-sm font-semibold text-purple-200">
+            <div className="text-sm font-semibold text-brand-200">
               MediBook for hospitals
             </div>
 
@@ -314,7 +314,7 @@ export default function HomePage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/widget/medibook-demo"
-              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-purple-700"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-brand-700"
             >
               Try the assistant
             </Link>

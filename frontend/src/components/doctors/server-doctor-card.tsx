@@ -24,7 +24,7 @@ export function ServerDoctorCard({
             {doctor.full_name}
           </h2>
 
-          <div className="mt-2 flex items-center gap-2 text-sm font-semibold text-emerald-700">
+          <div className="mt-2 flex items-center gap-2 text-sm font-semibold text-brand-700">
             <Stethoscope
               size={15}
             />
@@ -35,12 +35,12 @@ export function ServerDoctorCard({
           </div>
         </div>
 
-        <div className="rounded-xl bg-emerald-50 px-3 py-2 text-right">
-          <div className="text-xs text-emerald-700">
+        <div className="rounded-xl bg-brand-50 px-3 py-2 text-right">
+          <div className="text-xs text-brand-700">
             Consultation
           </div>
 
-          <div className="font-bold text-emerald-950">
+          <div className="font-bold text-brand-950">
             Tk{" "}
             {Number(
               doctor.consultation_fee,
@@ -79,7 +79,7 @@ export function ServerDoctorCard({
       <Link
         href={`/doctors/${doctor.id}`}
         prefetch
-        className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 transition group-hover:gap-3"
+        className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition group-hover:gap-3"
       >
         View profile
 

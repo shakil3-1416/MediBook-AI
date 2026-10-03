@@ -183,7 +183,7 @@ export function MediBookHeader() {
               MediBook
             </div>
 
-            <div className="-mt-1 hidden text-[9px] font-semibold uppercase tracking-[0.18em] text-emerald-600 sm:block">
+            <div className="-mt-1 hidden text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-600 sm:block">
               Healthcare scheduling
             </div>
 
@@ -268,7 +268,7 @@ export function MediBookHeader() {
 
             <Link
               href="/login"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700"
             >
 
               <LogIn
@@ -379,7 +379,7 @@ export function MediBookHeader() {
 
               <Link
                 href="/login"
-                className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-3 py-3 text-sm font-semibold text-white"
+                className="flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-3 py-3 text-sm font-semibold text-white"
               >
 
                 <LogIn
